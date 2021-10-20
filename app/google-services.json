@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "33566088908",
+    "project_id": "steadily-f06ce",
+    "storage_bucket": "steadily-f06ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33566088908:android:2f2da6fb42ac88848cec69",
+        "android_client_info": {
+          "package_name": "com.example.steadily"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33566088908-t6ml63nnmiev18i1mdrgbvcaks8hs7ce.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.steadily",
+            "certificate_hash": "a8467dde0acaf03cdd456abf1d7ade8f40e2c512"
+          }
+        },
+        {
+          "client_id": "33566088908-40slugqv0ss25mevetk93b9ednpfuqpg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCw6Vp1RfIJABXMrPDGWf7mWfiUGSlTVbo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33566088908-40slugqv0ss25mevetk93b9ednpfuqpg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
