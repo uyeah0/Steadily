@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:layout_margin="10dp"
+    >
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:id="@+id/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CalendarView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/todayList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@+id/calendar"
+        android:orientation="vertical">
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="오늘"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquarer"
+            />
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/border"
+            android:text="오늘의 할 일은 ~입니다"/>
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/border"
+            android:text="오늘의 할 일은 ~입니다"/>
+        <!--<ListView
+            android:id="@+id/listView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>-->
+    </LinearLayout>
+
+</RelativeLayout>
