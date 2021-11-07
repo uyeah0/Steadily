@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    >
+
+    <ImageButton
+        android:id="@+id/imgbtnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_left"
+    />
+
+    <ImageButton
+        android:id="@+id/imgbtnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/cancel"
+        />
+
+    <TextView
+        android:id="@+id/txtTimertime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="5:00"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nanumsquareb"
+        />
+
+    <TextView
+        android:id="@+id/txtTimerList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtTimertime"
+        android:layout_centerHorizontal="true"
+        android:text="일찍 일어나기"
+        android:textSize="30dp"
+        android:textColor="@color/black"/>
+
+
+    <ImageButton
+        android:id="@+id/imgbtnTimerPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/time_play"
+        android:layout_below="@+id/txtTimertime"
+        android:layout_centerHorizontal="true"
+        />
+    <ImageButton
+        android:id="@+id/imgbtnTimerStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/stop"
+        android:layout_below="@+id/imgbtnTimerPlay"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ImageButton
+        android:id="@+id/imgbtnTimerRepeat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/imgbtnTimerPlay"
+        android:src="@drawable/repeat" />
+    <ImageButton
+        android:id="@+id/imgbtnTimerNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imgbtnTimerPlay"
+        android:src="@drawable/next" />
+
+</RelativeLayout>

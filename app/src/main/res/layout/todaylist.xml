@@ -8,55 +8,64 @@
     android:layout_margin="10dp"
     >
 
-    <LinearLayout
-        android:layout_gravity="center"
+
+    <CalendarView
         android:id="@+id/calendar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_below="@+id/main_toolbar"
 
-        <CalendarView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
+        />
 
-    <LinearLayout
-        android:id="@+id/todayList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_below="@+id/calendar"
-        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tvDay"
             android:textStyle="bold"
+            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_below="@+id/calendar"
             android:text="오늘"
             android:textSize="20dp"
             android:textColor="@color/black"
             android:fontFamily="@font/nanumsquarer"
             />
-        <TextView
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/border"
-            android:text="오늘의 할 일은 ~입니다"/>
-        <TextView
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_margin="5dp"
-            android:background="@drawable/border"
-            android:text="오늘의 할 일은 ~입니다"/>
-        <!--<ListView
-            android:id="@+id/listView"
+    <!-- 완료된 목표 수-->
+    <TextView
+        android:id="@+id/completedGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calendar"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="18dp"
+        android:layout_toRightOf="@+id/tvDay"
+        android:fontFamily="@font/nanumsquarer"
+        android:text="완료된 목표"
+        android:textColor="#808080"
+        android:textSize="10dp"
+        android:textStyle="bold" />
+    <ImageButton
+        android:id="@+id/timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calendar"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/routine_play" />
+
+    <ImageButton
+        android:id="@+id/addGoal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calendar"
+        android:layout_toLeftOf="@+id/timer"
+        android:src="@drawable/add_schedule" />
+
+
+
+    <ListView
+            android:id="@+id/todaylistView"
+            android:layout_below="@+id/tvDay"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>-->
-    </LinearLayout>
+            android:layout_height="wrap_content"/>
 
 </RelativeLayout>
