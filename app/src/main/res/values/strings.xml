@@ -2,10 +2,15 @@
     <string name="app_name">꾸주니</string>
 
     <string name="txt_login">로그인</string>
-    <string name = "prompt_id">아이디</string>
+    <string name="prompt_id">아이디</string>
 
-    <string name = "prompt_password">비밀번호</string>
+    <string name="prompt_password">비밀번호</string>
     <string name="action_sign_in">로그인</string>
-    <string name = "action_sign_in_short">로그인</string>
+    <string name="action_sign_in_short">로그인</string>
+
+    <!--탭 레이아웃 목록-->
+    <string name="tab_menu_completed">전체목록</string>
+    <string name="tab_menu_today">오늘 실천</string>
+    <string name="tab_menu_statistics">통계</string>
 
 </resources>

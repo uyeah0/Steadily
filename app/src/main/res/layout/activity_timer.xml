@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <ImageButton
+        android:id="@+id/imgbtnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_left"
+        />
+
+    <ImageButton
+        android:id="@+id/imgbtnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/cancel"
+        />
+
+    <TextView
+        android:id="@+id/txtTimerList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="일찍 일어나기"
+        android:textSize="30dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/txtTimertime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtTimerList"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:text="5:00"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nanumsquareb"
+        />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/buttons_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/txtTimertime"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/imgbtnTimerRepeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/imgbtnTimerPlay"
+            android:src="@drawable/repeat" />
+
+        <ImageButton
+            android:id="@+id/imgbtnTimerPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:src="@drawable/time_play"
+            android:layout_below="@+id/txtTimertime"
+            android:layout_centerHorizontal="true"
+            />
+
+        <ImageButton
+            android:id="@+id/imgbtnTimerNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imgbtnTimerPlay"
+            android:src="@drawable/next" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <ImageButton
+        android:id="@+id/imgbtnTimerStop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/stop"
+        android:layout_below="@+id/buttons_wrapper"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/up_arrow"
+        android:layout_above="@+id/txtCurrentTime"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/txtCurrentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="15dp"
+        android:text="06:10 pm"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/black"/>
+
+
+</RelativeLayout>
