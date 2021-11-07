@@ -11,13 +11,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 // 오늘 실천
-public class todaylist extends Fragment {
+public class TodayListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View v = inflater.inflate(R.layout.todaylist, container, false);
+        View v = inflater.inflate(R.layout.fragment_todaylist, container, false);
 
         CalendarView calendarView = v.findViewById(R.id.calendar);
 

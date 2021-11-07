@@ -1,4 +1,11 @@
 <resources>
-    <string name="app_name">Steadily</string>
+    <string name="app_name">꾸주니</string>
+
     <string name="txt_login">로그인</string>
+    <string name = "prompt_id">아이디</string>
+
+    <string name = "prompt_password">비밀번호</string>
+    <string name="action_sign_in">로그인</string>
+    <string name = "action_sign_in_short">로그인</string>
+
 </resources>
