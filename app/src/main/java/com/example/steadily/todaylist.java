@@ -19,7 +19,7 @@ public class todaylist extends Fragment {
 
         View v = inflater.inflate(R.layout.todaylist, container, false);
 
-        CalendarView calendarView = v.findViewById(R.id.calendar)
+        CalendarView calendarView = v.findViewById(R.id.calendar);
 
         return v;
     }
