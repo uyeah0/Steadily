@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:font = "@font/font"
-    android:background="@color/white">
+    tools:context=".MainActivity">
 
     <FrameLayout
         android:id="@+id/loading"
@@ -30,114 +31,118 @@
 
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/txtSup"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        android:text="Sign up"
-        android:textColor="#FF834F"
-        android:textSize="28sp"
-        android:textStyle="bold"
+        android:layout_marginTop="55dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/nameEt"
-        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtSup"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/rounded_border"
-        android:hint="name"
-        android:imeOptions="actionNext"
-        android:inputType="textPersonName"
-        android:textColor="@color/background_color_reverse"
-        android:textColorHint="@color/background_color_reverse"
-        android:textSize="18sp"
+        android:id="@+id/txtLogo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="88dp"
+        android:text="KUJUNI"
+        android:textSize="35dp"
+        android:textStyle="bold"
+        android:textColor="#FFC107"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtSup" />
+        app:layout_constraintTop_toBottomOf="@id/imageView"
+        />
 
     <EditText
         android:id="@+id/emailEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/nameEt"
+        android:layout_below="@id/imageView"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_border"
         android:hint="email"
         android:imeOptions="actionNext"
         android:inputType="textEmailAddress"
         android:textColor="@color/background_color_reverse"
-        android:textColorHint="@color/background_color_reverse"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nameEt" />
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
 
     <EditText
-        android:id="@+id/passwordEdt"
+        android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/background_color_reverse"
         android:layout_below="@id/emailEt"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/rounded_border"
         android:hint="password"
-        android:imeOptions="actionNext"
-        android:inputType="textPassword"
-        android:textColor="@color/background_color_reverse"
-        android:textColorHint="@color/background_color_reverse"
+        android:inputType="textEmailAddress"
         android:textSize="18sp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailEt" />
 
-    <EditText
-        android:id="@+id/passwordcheckEdt"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/t"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/passwordEdt"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/rounded_border"
-        android:hint="password check"
-        android:imeOptions="actionNext"
-        android:inputType="textPassword"
-        android:textColor="@color/background_color_reverse"
-        android:textColorHint="@color/background_color_reverse"
-        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="35dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordEdt" />
+        app:layout_constraintTop_toBottomOf="@id/et_password"
+        android:layout_below="@+id/et_password"
+        />
 
     <Button
-        android:id="@+id/register2_btn"
+        android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/passwordcheckEdt"
         android:layout_centerInParent="true"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="60dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/blue_button"
-        android:text="회원가입"
+        android:text="@string/txt_login"
         android:textAllCaps="false"
-        android:textColor="@android:color/black"
+        android:textColor="@color/black"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordcheckEdt" />
+        app:layout_constraintTop_toBottomOf="@id/et_password"
+        android:layout_below="@+id/t"/>
 
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/login_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아직 계정이 없으신가요?"
+            android:layout_marginLeft="50dp" />
+        <Button android:textSize="16dp"
+            android:textColor="#FF0000"
+            android:background="#00ff0000"
+            android:id="@+id/register_t2"
+            android:textStyle="normal"
+            android:text="회원가입"
+            android:layout_marginRight="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 </RelativeLayout>

@@ -5,4 +5,9 @@
         android:font="@font/nanumsquareb"
         android:fontStyle="normal"
         android:fontWeight="400"/>
+    <font
+        android:font="@font/pico"
+        android:fontStyle="normal"
+        android:fontWeight="400"/>
+
 </font-family>
