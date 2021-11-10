@@ -27,10 +27,14 @@
             android:name=".SignActivity"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".RegisterActivity" />
+
+        <!-- RegisterActivity -->
+        <activity android:name=".RegisterActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
         <!-- MainActivity -->
-        <activity android:name=".MainActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".MainActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
 
         <!--TimerActivity-->
         <activity android:name=".TimerActivity"></activity>
