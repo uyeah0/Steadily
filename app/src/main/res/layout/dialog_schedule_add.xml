@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_background"
+    android:padding="15dp">
+
+
+
+    <ImageButton
+        android:id="@+id/imgbtnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/cancel"
+        />
+
+    <ImageView
+        android:id="@+id/imgViewAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/add"
+        />
+
+    <ImageView
+        android:id="@+id/imgViewRoutine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/imgViewAdd"
+        android:padding="20dp"
+        android:src="@drawable/routine_title"
+        />
+
+    <EditText
+        android:id="@+id/editAddList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgViewRoutine"
+        android:padding="20dp"
+        android:textSize="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:hint="@string/editAddList"
+        android:background="@drawable/edittext_graybox"
+      />
+
+
+    <ImageView
+        android:id="@+id/imgViewPlayTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editAddList"
+        android:layout_marginTop="20dp"
+        android:padding="20dp"
+        android:src="@drawable/play_time"
+        app:layout_constraintStart_toStartOf="@+id/timePicker"
+        app:layout_constraintTop_toTopOf="@+id/timePicker" />
+
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgViewPlayTime"
+        android:layout_centerHorizontal="true"
+        android:timePickerMode="spinner"
+         />
+
+    <ImageButton
+        android:id="@+id/imgbtnScheduleSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timePicker"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/storage" />
+
+</RelativeLayout>
