@@ -6,7 +6,6 @@
         <!--타이틀 바 없애기-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/splash_background</item>
     </style>
 
 

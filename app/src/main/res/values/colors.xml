@@ -16,7 +16,5 @@
     <!--    <color name="facebook_button_color">#3B5999</color>-->
     <color name="loading_overlay_color">#1A525050</color>
 
-
-    <color name="splash_background">#FFF77F</color>
     <color name="button_background">#FFF77F</color>
 </resources>

@@ -13,7 +13,7 @@
 
         <!-- SplashActivity -->
         <activity
-            android:name=".SplashActivity"
+            android:name=".SplashActivity" android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,15 +24,13 @@
 
         <!-- SignInActivity -->
         <activity
-            android:name=".SignInActivity"
+            android:name=".SignActivity"
             android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" /> <!-- MainActivity -->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".RegisterActivity" />
 
-
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-
+        <!-- MainActivity -->
+        <activity android:name=".MainActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <!--TimerActivity-->
         <activity android:name=".TimerActivity"></activity>
