@@ -1,67 +1,328 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
     android:layout_margin="10dp">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/calendar_wrapper"
+        android:layout_width="412dp"
+        android:layout_height="140dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginEnd="0dp">
 
-    <CalendarView
-        android:id="@+id/calendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tabLayout"
-        />
+        <!--0000년 00월-->
+        <!--00일 0요일-->
 
-    <TextView
-        android:id="@+id/tvDay"
-        android:textStyle="bold"
-        android:padding="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/calendar"
-        android:text="오늘"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/nanumsquarer"
-        />
-    <!-- 완료된 목표 수-->
-    <TextView
-        android:id="@+id/completedGoal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/calendar"
-        android:layout_marginLeft="13dp"
-        android:layout_marginTop="18dp"
-        android:layout_toRightOf="@+id/tvDay"
-        android:fontFamily="@font/nanumsquarer"
-        android:text="완료된 목표"
-        android:textColor="#808080"
-        android:textSize="10dp"
-        android:textStyle="bold" />
-    <ImageButton
-        android:id="@+id/timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/calendar"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/routine_play" />
+        <TextView
+            android:id="@+id/ymTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/daysLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
 
-    <ImageButton
-        android:id="@+id/addGoal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/calendar"
-        android:layout_toLeftOf="@+id/timer"
-        android:src="@drawable/add_schedule" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/daysLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.48"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ymTextView">
 
+            <!--일요일-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/wCalender_sun"
+                style="@style/wCalender"
+                app:cardElevation="0dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/wCalender_mon"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/SUN_num"
+                    style="@style/wCalender_num"
+                    android:text="13" />
+
+                <TextView
+                    android:id="@+id/SUN_txt"
+                    style="@style/wCalender_txt"
+                    android:text="SUN" />
+
+                <ImageView
+                    android:id="@+id/sun_dot"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/week_calendar_dot"
+                    android:visibility="invisible" />
+
+            </androidx.cardview.widget.CardView>
+            <!--월요일-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/wCalender_mon"
+                style="@style/wCalender"
+                android:layout_marginStart="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/wCalender_tue"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/wCalender_sun"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/MON_num"
+                    style="@style/wCalender_num"
+                    android:text="14" />
+
+                <TextView
+                    android:id="@+id/MON_txt"
+                    style="@style/wCalender_txt"
+                    android:text="MON" />
+
+                <ImageView
+                    android:id="@+id/mon_dot"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/week_calendar_dot"
+                    android:visibility="invisible" />
+
+            </androidx.cardview.widget.CardView>
+            <!--화요일-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/wCalender_tue"
+                style="@style/wCalender"
+                android:layout_marginStart="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/wCalender_wed"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/wCalender_mon"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/TUE_num"
+                    style="@style/wCalender_num"
+                    android:text="15" />
+
+                <TextView
+                    android:id="@+id/TUE_txt"
+                    style="@style/wCalender_txt"
+                    android:text="TUE" />
+
+                <ImageView
+                    android:id="@+id/tue_dot"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/week_calendar_dot"
+                    android:visibility="invisible" />
+
+            </androidx.cardview.widget.CardView>
+            <!--수요일-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/wCalender_wed"
+                style="@style/wCalender"
+                android:layout_marginStart="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/wCalender_thu"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/wCalender_tue"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/WED_num"
+                    style="@style/wCalender_num"
+                    android:text="16" />
+
+                <TextView
+                    android:id="@+id/WED_txt"
+                    style="@style/wCalender_txt"
+                    android:text="WED" />
+
+                <ImageView
+                    android:id="@+id/wed_dot"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/week_calendar_dot"
+                    android:visibility="invisible" />
+
+            </androidx.cardview.widget.CardView>
+            <!--목요일-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/wCalender_thu"
+                style="@style/wCalender"
+                android:layout_marginStart="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/wCalender_fri"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/wCalender_wed"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/THU_num"
+                    style="@style/wCalender_num"
+                    android:text="17" />
+
+                <TextView
+                    android:id="@+id/THU_txt"
+                    style="@style/wCalender_txt"
+                    android:text="THU" />
+
+                <ImageView
+                    android:id="@+id/thu_dot"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/week_calendar_dot"
+                    android:visibility="invisible" />
+
+            </androidx.cardview.widget.CardView>
+            <!--금요일-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/wCalender_fri"
+                style="@style/wCalender"
+                android:layout_marginStart="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/wCalender_sat"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/wCalender_thu"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/FRI_num"
+                    style="@style/wCalender_num"
+                    android:text="18" />
+
+                <TextView
+                    android:id="@+id/FRI_txt"
+                    style="@style/wCalender_txt"
+                    android:text="FRI" />
+
+                <ImageView
+                    android:id="@+id/fri_dot"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/week_calendar_dot"
+                    android:visibility="invisible" />
+
+            </androidx.cardview.widget.CardView>
+            <!--토요일-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/wCalender_sat"
+                style="@style/wCalender"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="16dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toEndOf="@+id/wCalender_fri"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/SAT_num"
+                    style="@style/wCalender_num"
+                    android:text="19" />
+
+                <TextView
+                    android:id="@+id/SAT_txt"
+                    style="@style/wCalender_txt"
+                    android:text="SAT" />
+
+                <ImageView
+                    android:id="@+id/sat_dot"
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/week_calendar_dot"
+                    android:visibility="invisible" />
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/buttons_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calendar_wrapper">
+        <TextView
+            android:id="@+id/tvDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:text="오늘"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquarer"
+            />
+        <!-- 완료된 목표 수-->
+        <TextView
+            android:id="@+id/completedGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tvDay"
+            android:fontFamily="@font/nanumsquarer"
+            android:text="완료된 목표"
+            android:textColor="#808080"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/imgBtnViewTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/routine_play" />
+
+        <ImageButton
+            android:id="@+id/imgbtnAddSchedule"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/imgBtnViewTimer"
+            android:src="@drawable/add_schedule" />
+    </RelativeLayout>
 
 
     <ListView
         android:id="@+id/todaylistView"
-        android:layout_below="@+id/tvDay"
+        android:layout_below="@+id/buttons_wrapper"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
