@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -108,6 +107,8 @@ public class RegisterActivity extends AppCompatActivity {
                                     hashMap.put("title", "e");
                                     hashMap.put("time", "e");
                                     hashMap.put("done", "e");
+                                    hashMap.put("good", "0");
+                                    hashMap.put("post_q", "e");
 
                                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                                     DatabaseReference myRef = database.getReference().child("users");
