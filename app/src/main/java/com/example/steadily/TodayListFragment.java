@@ -55,18 +55,4 @@ public class TodayListFragment extends Fragment {
         return view;
     }
 
-/*    *//*오늘 실천 추가 디자인 함수*//*
-    public class ShowAddDialog{
-        public void showDialog(Activity activity){
-            final Dialog dialog = new Dialog(activity);
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE); //  nmm,
-            dialog.setContentView(R.layout.activity_dialog_add);
-
-            *//*모양만들기*//*
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT)); // 투명
-
-            dialog.show(); // 다이얼로그 띄우기
-        }
-    }*/
-
 }
