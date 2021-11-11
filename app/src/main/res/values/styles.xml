@@ -9,4 +9,34 @@
     </style>
 
 
+    <!--HOME_CALENDER-->
+    <style name="wCalender_num">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:fontFamily">@font/nanumsquareb</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="wCalender_txt">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:fontFamily">@font/nanumsquareb</item>
+    </style>
+
+    <style name="wCalender">
+        <item name="android:layout_width">0dp</item>
+        <item name="percentWidth">0.11</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="cardCornerRadius">10dp</item>
+        <item name="cardBackgroundColor">#0a000000</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+
 </resources>

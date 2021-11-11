@@ -46,7 +46,7 @@ public class SignActivity extends AppCompatActivity{
 
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.signin);
+        setContentView(R.layout.activity_sign_in);
 
         // 버튼 등록하기
         mResigettxt = findViewById(R.id.register_t2);
@@ -101,7 +101,7 @@ public class SignActivity extends AppCompatActivity{
                 }else if(pwd.isEmpty()){
                     Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
                 }else{
-                    firebaseAuth.signInWithEmailAndPassword(email,pwd)
+                    firebaseAuth.signInWithEmailAndPassword(email, pwd)
                             .addOnCompleteListener(SignActivity.this, new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -172,6 +172,7 @@ public class SignActivity extends AppCompatActivity{
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         updateUI(currentUser);
     }
+
     private void updateUI(FirebaseUser user) { //update ui code here
         if (user != null) {
             Intent intent = new Intent(this, MainActivity.class);
