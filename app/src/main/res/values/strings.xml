@@ -13,4 +13,7 @@
     <string name="tab_menu_today">오늘 실천</string>
     <string name="tab_menu_statistics">통계</string>
 
+    <!--editAddList hint-->
+    <string name="editAddList">일정 이름 입력</string>
+
 </resources>

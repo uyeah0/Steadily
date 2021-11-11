@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+
 // 전체 목록
 public class CompletedListFragment extends Fragment {
     @Nullable
@@ -16,7 +18,11 @@ public class CompletedListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        View v = inflater.inflate(R.layout.fragement_completedlist, container, false);
-        return v;
+        View view = inflater.inflate(R.layout.fragement_completedlist, container, false);
+
+        MaterialCalendarView materialCalendarView = view.findViewById(R.id.calendarView);
+
+
+        return view;
     }
 }

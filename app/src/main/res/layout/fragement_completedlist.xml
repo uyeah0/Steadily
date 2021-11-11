@@ -8,13 +8,24 @@
     android:orientation="vertical">
 
 
+<!--    <CalendarView-->
+<!--        android:id="@+id/calendar"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/tabLayout"-->
+<!--        />-->
 
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_below="@+id/tabLayout"
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendarView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="340dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="20dp"
+        app:mcv_calendarMode="month"
+
+        app:mcv_selectionColor="#1a0078ff"
+        app:mcv_showOtherDates="all" />
 
 </RelativeLayout>
