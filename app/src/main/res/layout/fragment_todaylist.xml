@@ -69,14 +69,6 @@
                     style="@style/wCalender_txt"
                     android:text="SUN" />
 
-                <ImageView
-                    android:id="@+id/sun_dot"
-                    android:layout_width="4dp"
-                    android:layout_height="4dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/week_calendar_dot"
-                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
             <!--월요일-->
@@ -101,14 +93,6 @@
                     style="@style/wCalender_txt"
                     android:text="MON" />
 
-                <ImageView
-                    android:id="@+id/mon_dot"
-                    android:layout_width="4dp"
-                    android:layout_height="4dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/week_calendar_dot"
-                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
             <!--화요일-->
@@ -133,14 +117,6 @@
                     style="@style/wCalender_txt"
                     android:text="TUE" />
 
-                <ImageView
-                    android:id="@+id/tue_dot"
-                    android:layout_width="4dp"
-                    android:layout_height="4dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/week_calendar_dot"
-                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
             <!--수요일-->
@@ -165,14 +141,6 @@
                     style="@style/wCalender_txt"
                     android:text="WED" />
 
-                <ImageView
-                    android:id="@+id/wed_dot"
-                    android:layout_width="4dp"
-                    android:layout_height="4dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/week_calendar_dot"
-                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
             <!--목요일-->
@@ -197,14 +165,6 @@
                     style="@style/wCalender_txt"
                     android:text="THU" />
 
-                <ImageView
-                    android:id="@+id/thu_dot"
-                    android:layout_width="4dp"
-                    android:layout_height="4dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/week_calendar_dot"
-                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
             <!--금요일-->
@@ -229,14 +189,6 @@
                     style="@style/wCalender_txt"
                     android:text="FRI" />
 
-                <ImageView
-                    android:id="@+id/fri_dot"
-                    android:layout_width="4dp"
-                    android:layout_height="4dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/week_calendar_dot"
-                    android:visibility="invisible" />
 
             </androidx.cardview.widget.CardView>
             <!--토요일-->
@@ -261,16 +213,7 @@
                     android:id="@+id/SAT_txt"
                     style="@style/wCalender_txt"
                     android:text="SAT" />
-
-                <ImageView
-                    android:id="@+id/sat_dot"
-                    android:layout_width="4dp"
-                    android:layout_height="4dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/week_calendar_dot"
-                    android:visibility="invisible" />
-
+-->
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
