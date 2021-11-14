@@ -44,7 +44,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // calender library
-    compile 'com.github.MOLO17:CustomizableCalendar:v0.1.4'
+    implementation 'com.github.applikeysolutions:cosmocalendar:1.0.4'
+    // week calender library
+
 
     //파이어베이스 인증 관련 라이브러리
     //import firebase BoM
