@@ -15,20 +15,25 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_weight="0.17">
+            android:layout_weight="0.17"
+            android:gravity="center_vertical">
 
             <CheckBox
                 android:id="@+id/todaySchedule_chk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="17dp"
                 android:button="@null"
                 android:buttonTint="@color/black"
                 android:checked="true"
+                android:enabled="false"
                 android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
                 />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/todaySchedule_chk" />
 
         </RelativeLayout>
 

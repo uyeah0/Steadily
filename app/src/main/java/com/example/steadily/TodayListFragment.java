@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,8 +28,9 @@ public class TodayListFragment extends Fragment {
     Activity mActivity;
 
     ImageButton addScheduleButton;
+    ListView mScheduleListView;
 
-    List<String> list = new ArrayList<>();
+    List<TodayScheduleItem> scheduleItems = new ArrayList<TodayScheduleItem>();
 
 
     @Nullable
@@ -58,6 +60,42 @@ public class TodayListFragment extends Fragment {
                 addScheduleDialog.showDialog();
             }
         });
+
+        mScheduleListView = view.findViewById(R.id.todaylistView);
+
+        TodayScheduleItem item1 = new TodayScheduleItem();
+        item1.isChecked = true;
+        item1.title= "[운동]걸어서 등교하기!";
+        item1.time = "20분";
+        item1.repeatCount =5;
+
+        TodayScheduleItem item2 = new TodayScheduleItem();
+        item2.isChecked = false;
+        item2.title= "[생활습관]일찍 일어나기!";
+        item2.time = "20분";
+        item2.repeatCount =5;
+
+        TodayScheduleItem item3 = new TodayScheduleItem();
+        item3.isChecked = true;
+        item3.title= "[공부]프로젝트하기!";
+        item3.time = "20분";
+        item3.repeatCount =5;
+
+        TodayScheduleItem item4 = new TodayScheduleItem();
+        item4.isChecked = true;
+        item4.title= "[공부]프로젝트하기!";
+        item4.time = "20분";
+        item4.repeatCount = 5;
+
+        scheduleItems.add(item1);
+        scheduleItems.add(item2);
+        scheduleItems.add(item3);
+        scheduleItems.add(item4);
+
+        TodayScheduleListAdapter adapter = new TodayScheduleListAdapter(scheduleItems);
+
+        mScheduleListView.setAdapter(adapter);
+
 
 
 
