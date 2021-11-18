@@ -16,7 +16,7 @@
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:textSize">20sp</item>
         <item name="cardCornerRadius">20dp</item>
-        <item name="background">#FFFF00</item>
+        <item name="background">@color/yellow</item>
         <item name="android:layout_marginTop">28dp</item>
         <item name="android:fontFamily">@font/nanumsquareb</item>
         <item name="android:textColor">@color/black</item>
