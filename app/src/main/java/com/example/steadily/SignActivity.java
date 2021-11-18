@@ -1,10 +1,13 @@
 package com.example.steadily;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -76,6 +79,46 @@ public class SignActivity extends AppCompatActivity{
                 overridePendingTransition(R.anim.translate_none,R.anim.translate_center_to_right);
             }
         });*/
+
+
+        mPasswordText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    String email = mEmailText.getText().toString().trim();
+                    String pwd = mPasswordText.getText().toString().trim();
+
+                    if(email.isEmpty() && pwd.isEmpty()){
+                        Toast.makeText(getApplicationContext(), "이메일과 비밀번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    }
+                    else if(email.isEmpty()){
+                        Toast.makeText(getApplicationContext(), "이메일을 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    }else if(pwd.isEmpty()){
+                        Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
+                    }else{
+
+                        firebaseAuth.signInWithEmailAndPassword(email, pwd)
+                                .addOnCompleteListener(SignActivity.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if(task.isSuccessful()){
+                                            Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                                            Intent in = new Intent(getApplicationContext(), MainActivity.class);
+                                            startActivity(in);
+                                            overridePendingTransition(R.anim.translate_none,R.anim.translate_center_to_right);
+                                            finish();
+                                        }
+                                        else{
+                                            Toast.makeText(getApplicationContext(),"로그인 오류",Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+
+                    }
+                }
+                return true;
+            }
+        });
 
         // 가입 버튼
         mResigettxt.setOnClickListener(v -> {
