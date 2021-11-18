@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@drawable/border"
+        android:background="@drawable/listitemborder"
         android:layout_margin="5dp"
         >
         <RelativeLayout
@@ -21,11 +21,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:checked="true"
-                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                android:layout_marginRight="17dp"
                 android:button="@null"
                 android:buttonTint="@color/black"
-                android:background="@android:color/transparent"
+                android:checked="true"
+                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
                 />
 
 
