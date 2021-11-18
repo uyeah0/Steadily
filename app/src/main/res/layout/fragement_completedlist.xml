@@ -14,4 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true" />
 
+    <com.p_v.flexiblecalendar.FlexibleCalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 </RelativeLayout>
