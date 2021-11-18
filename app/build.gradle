@@ -34,6 +34,8 @@ dependencies {
     //달력 월별 보기 라이브러리
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
 
+    implementation 'com.p_v:flexiblecalendar:1.2.1'
+
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
 
