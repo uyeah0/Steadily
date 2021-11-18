@@ -61,7 +61,7 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.dialog_schedule_add);
 
-        editAddList = findViewById(R.id.editAddList);
+        editAddList = findViewById(R.id.etAddList);
         timePicker = findViewById(R.id.timePicker);
 
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
@@ -99,8 +99,8 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
 
         dialog.show();
 
-        final ImageButton imgBtnCancel = dialog.findViewById(R.id.imgbtnCancel);
-        final ImageButton imgBtnSave = dialog.findViewById(R.id.imgbtnScheduleSave);
+        final ImageButton imgBtnCancel = dialog.findViewById(R.id.imgBtnCancel);
+        final ImageButton imgBtnSave = dialog.findViewById(R.id.imgBtnScheduleSave);
 
         TimePicker timePicker = (TimePicker)dialog.findViewById(R.id.timePicker);
         timePicker.setIs24HourView(true);
