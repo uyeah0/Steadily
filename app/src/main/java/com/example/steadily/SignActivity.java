@@ -5,6 +5,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -32,6 +33,8 @@ public class SignActivity extends AppCompatActivity{
     EditText mEmailText;
     EditText mPasswordText;
 
+    InputMethodManager mInputMethodManager;
+
     // 구글로그인 result 상수
     private static final int RC_SIGN_IN = 900;
     // 구글 API 클라이언트
@@ -57,6 +60,8 @@ public class SignActivity extends AppCompatActivity{
         mEmailText = findViewById(R.id.emailEt);
         mPasswordText = findViewById(R.id.et_password);
 
+        mInputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+
         // --google
         // 파이어베이스 인증 객체 선언
         firebaseAuth = FirebaseAuth.getInstance();
@@ -81,40 +86,27 @@ public class SignActivity extends AppCompatActivity{
         });*/
 
 
+        OnCompleteListener<AuthResult> mOnCompleteListener = new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+                    Intent in = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(in);
+                    overridePendingTransition(R.anim.translate_none, R.anim.translate_center_to_right);
+                    finish();
+                } else {
+                    Toast.makeText(getApplicationContext(), "로그인 오류", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+
+
         mPasswordText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    String email = mEmailText.getText().toString().trim();
-                    String pwd = mPasswordText.getText().toString().trim();
-
-                    if(email.isEmpty() && pwd.isEmpty()){
-                        Toast.makeText(getApplicationContext(), "이메일과 비밀번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
-                    }
-                    else if(email.isEmpty()){
-                        Toast.makeText(getApplicationContext(), "이메일을 입력해주세요!", Toast.LENGTH_SHORT).show();
-                    }else if(pwd.isEmpty()){
-                        Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
-                    }else{
-
-                        firebaseAuth.signInWithEmailAndPassword(email, pwd)
-                                .addOnCompleteListener(SignActivity.this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if(task.isSuccessful()){
-                                            Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
-                                            Intent in = new Intent(getApplicationContext(), MainActivity.class);
-                                            startActivity(in);
-                                            overridePendingTransition(R.anim.translate_none,R.anim.translate_center_to_right);
-                                            finish();
-                                        }
-                                        else{
-                                            Toast.makeText(getApplicationContext(),"로그인 오류",Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
-
-                    }
+                    onRequestSignIn(mOnCompleteListener);
                 }
                 return true;
             }
@@ -133,37 +125,28 @@ public class SignActivity extends AppCompatActivity{
         mLoginBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String email = mEmailText.getText().toString().trim();
-                String pwd = mPasswordText.getText().toString().trim();
-
-                if(email.isEmpty() && pwd.isEmpty()){
-                    Toast.makeText(getApplicationContext(), "이메일과 비밀번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
-                }
-                else if(email.isEmpty()){
-                    Toast.makeText(getApplicationContext(), "이메일을 입력해주세요!", Toast.LENGTH_SHORT).show();
-                }else if(pwd.isEmpty()){
-                    Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
-                }else{
-                    firebaseAuth.signInWithEmailAndPassword(email, pwd)
-                            .addOnCompleteListener(SignActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if(task.isSuccessful()){
-                                        Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
-                                        Intent in = new Intent(getApplicationContext(), MainActivity.class);
-                                        startActivity(in);
-                                        overridePendingTransition(R.anim.translate_none,R.anim.translate_center_to_right);
-                                        finish();
-                                    }
-                                    else{
-                                        Toast.makeText(getApplicationContext(),"로그인 오류",Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
-
-                }
+                onRequestSignIn(mOnCompleteListener);
             }
         });
+    }
+
+    private void onRequestSignIn(OnCompleteListener<AuthResult> mOnCompleteListener) {
+        String email = mEmailText.getText().toString().trim();
+        String pwd = mPasswordText.getText().toString().trim();
+
+        if (email.isEmpty() && pwd.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "이메일과 비밀번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
+        } else if (email.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "이메일을 입력해주세요!", Toast.LENGTH_SHORT).show();
+        } else if (pwd.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "비밀번호를 입력해주세요!", Toast.LENGTH_SHORT).show();
+        } else {
+            mInputMethodManager.hideSoftInputFromWindow(mPasswordText.getWindowToken(), 0);
+            firebaseAuth.signInWithEmailAndPassword(email, pwd)
+                    .addOnCompleteListener(SignActivity.this,
+                            mOnCompleteListener);
+
+        }
     }
 
     @Override
