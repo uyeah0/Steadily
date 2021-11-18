@@ -7,10 +7,16 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     FragmentAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(1).setText(R.string.tab_menu_today);
         tabLayout.getTabAt(2).setText(R.string.tab_menu_statistics);
 
+        Date currentTime = Calendar.getInstance().getTime();
+        String date_text = new SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(currentTime);
 
+        FirebasePost f = new FirebasePost(date_text);
     }
 }

@@ -107,9 +107,6 @@ public class RegisterActivity extends AppCompatActivity {
                                     hashMap.put("title", "e");
                                     hashMap.put("time", "e");
                                     hashMap.put("done", "e");
-                                    hashMap.put("cnt", "0");
-                                    hashMap.put("good", "0");
-                                    hashMap.put("post_q", "e");
 
                                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                                     DatabaseReference myRef = database.getReference().child("users");
