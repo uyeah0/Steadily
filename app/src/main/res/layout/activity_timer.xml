@@ -13,7 +13,7 @@
         />
 
     <ImageButton
-        android:id="@+id/Cancel_imgBtn"
+        android:id="@+id/imgbtnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
