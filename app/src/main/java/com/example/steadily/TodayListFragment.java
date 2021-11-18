@@ -19,11 +19,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 // 오늘 실천
 public class TodayListFragment extends Fragment {
     Activity mActivity;
 
     ImageButton addScheduleButton;
+
+    List<String> list = new ArrayList<>();
+
 
     @Nullable
     @Override
@@ -47,10 +53,13 @@ public class TodayListFragment extends Fragment {
         addScheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 AddScheduleDialog addScheduleDialog = new AddScheduleDialog(mActivity);
                 addScheduleDialog.showDialog();
             }
         });
+
+
 
         return view;
     }

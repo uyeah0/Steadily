@@ -41,7 +41,7 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
     TimePicker timePicker;
 
     int cnt = 0;
-    FirebaseAuth firebaseAuth;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     SharedPreferences preferences;
 
     //날짜 및 시간 형식 지정
@@ -61,7 +61,7 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.dialog_schedule_add);
 
-        editAddList = findViewById(R.id.etAddList);
+        editAddList = findViewById(R.id.editAddList);
         timePicker = findViewById(R.id.timePicker);
 
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
@@ -99,8 +99,9 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
 
         dialog.show();
 
-        final ImageButton imgBtnCancel = dialog.findViewById(R.id.imgBtnCancel);
-        final ImageButton imgBtnSave = dialog.findViewById(R.id.imgBtnScheduleSave);
+        final EditText editAddList = dialog.findViewById(R.id.editAddList);
+        final ImageButton imgBtnCancel = dialog.findViewById(R.id.imgbtnCancel);
+        final ImageButton imgBtnSave = dialog.findViewById(R.id.imgbtnScheduleSave);
 
         TimePicker timePicker = (TimePicker)dialog.findViewById(R.id.timePicker);
         timePicker.setIs24HourView(true);
