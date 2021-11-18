@@ -138,7 +138,7 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             String get_title = snapshot.child("title").getValue(String.class);
-                            if(get_title != "e" && cnt != 1){
+                            if(get_title == "e" && cnt != 1){
                                 myRef.child(uid).child("date").child(get_date).child("schedule").child(String.valueOf(ii)).child("title").setValue(title);
                                 myRef.child(uid).child("date").child(get_date).child("schedule").child(String.valueOf(ii)).child("time").setValue(time);
                                 cnt = 1;

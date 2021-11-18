@@ -24,8 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text=""
+            android:text="2021.10"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -61,13 +60,13 @@
 
                 <TextView
                     android:id="@+id/SUN_num"
-                    style="@style/wCalender_num"
+                    style="@style/Calender_num"
                     android:text="13" />
 
                 <TextView
                     android:id="@+id/SUN_txt"
                     style="@style/wCalender_txt"
-                    android:text="SUN" />
+                    android:text="일" />
 
 
             </androidx.cardview.widget.CardView>
@@ -85,13 +84,13 @@
 
                 <TextView
                     android:id="@+id/MON_num"
-                    style="@style/wCalender_num"
+                    style="@style/Calender_num"
                     android:text="14" />
 
                 <TextView
                     android:id="@+id/MON_txt"
                     style="@style/wCalender_txt"
-                    android:text="MON" />
+                    android:text="월" />
 
 
             </androidx.cardview.widget.CardView>
@@ -109,13 +108,13 @@
 
                 <TextView
                     android:id="@+id/TUE_num"
-                    style="@style/wCalender_num"
+                    style="@style/Calender_num"
                     android:text="15" />
 
                 <TextView
                     android:id="@+id/TUE_txt"
                     style="@style/wCalender_txt"
-                    android:text="TUE" />
+                    android:text="화" />
 
 
             </androidx.cardview.widget.CardView>
@@ -133,13 +132,13 @@
 
                 <TextView
                     android:id="@+id/WED_num"
-                    style="@style/wCalender_num"
+                    style="@style/Calender_num"
                     android:text="16" />
 
                 <TextView
                     android:id="@+id/WED_txt"
                     style="@style/wCalender_txt"
-                    android:text="WED" />
+                    android:text="수" />
 
 
             </androidx.cardview.widget.CardView>
@@ -157,13 +156,13 @@
 
                 <TextView
                     android:id="@+id/THU_num"
-                    style="@style/wCalender_num"
+                    style="@style/Calender_num"
                     android:text="17" />
 
                 <TextView
                     android:id="@+id/THU_txt"
                     style="@style/wCalender_txt"
-                    android:text="THU" />
+                    android:text="목" />
 
 
             </androidx.cardview.widget.CardView>
@@ -181,13 +180,13 @@
 
                 <TextView
                     android:id="@+id/FRI_num"
-                    style="@style/wCalender_num"
+                    style="@style/Calender_num"
                     android:text="18" />
 
                 <TextView
                     android:id="@+id/FRI_txt"
                     style="@style/wCalender_txt"
-                    android:text="FRI" />
+                    android:text="금" />
 
 
             </androidx.cardview.widget.CardView>
@@ -206,14 +205,14 @@
 
                 <TextView
                     android:id="@+id/SAT_num"
-                    style="@style/wCalender_num"
+                    style="@style/Calender_num"
                     android:text="19" />
 
                 <TextView
                     android:id="@+id/SAT_txt"
                     style="@style/wCalender_txt"
-                    android:text="SAT" />
--->
+                    android:text="토" />
+                -->
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -240,7 +239,7 @@
             />
         <!-- 완료된 목표 수-->
         <TextView
-            android:id="@+id/completedGoal"
+            android:id="@+id/tvCompletedGoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tvDay"
@@ -262,7 +261,7 @@
             android:src="@drawable/save" />
 
         <ImageButton
-            android:id="@+id/imgbtnAddSchedule"
+            android:id="@+id/imgBtnAddSchedule"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -273,7 +272,7 @@
 
 
     <ListView
-        android:id="@+id/todaylistView"
+        android:id="@+id/listView"
         android:layout_below="@+id/buttons_wrapper"
         android:layout_width="wrap_content"
         android:layout_height="320dp"/>

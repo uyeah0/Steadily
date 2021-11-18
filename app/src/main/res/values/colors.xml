@@ -18,4 +18,8 @@
     <color name="loading_overlay_color">#1A525050</color>
 
     <color name="button_background">#FFF77F</color>
+
+    <!--월별라이브러리-->
+    <color name="background_name_of_dayweek_bar">#E6E6CD</color>
+    <color name="text_name_of_dayweek_bar">@android:color/black</color>
 </resources>
