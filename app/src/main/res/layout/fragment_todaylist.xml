@@ -51,17 +51,16 @@
                 android:id="@+id/wCalender_sun"
                 style="@style/wCalender"
                 app:cardElevation="0dp"
-                android:layout_marginStart="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/wCalender_mon"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/SUN_num"
-                    style="@style/wCalender_num"
-                    android:text="13" />
+                    <TextView
+                        android:id="@+id/SUN_num"
+                        style="@style/wCalender_num"
+                        android:text="13" />
 
                 <TextView
                     android:id="@+id/SUN_txt"
@@ -195,7 +194,6 @@
                 android:id="@+id/wCalender_sat"
                 style="@style/wCalender"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="16dp"
                 app:cardElevation="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -212,7 +210,6 @@
                     android:id="@+id/SAT_txt"
                     style="@style/wCalender_txt"
                     android:text="토" />
-                -->
             </androidx.cardview.widget.CardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -275,6 +272,6 @@
         android:id="@+id/todaylistView"
         android:layout_below="@+id/buttons_wrapper"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="340dp"/>
 
 </RelativeLayout>
