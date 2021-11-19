@@ -60,7 +60,7 @@
 
                 <TextView
                     android:id="@+id/SUN_num"
-                    style="@style/Calender_num"
+                    style="@style/wCalender_num"
                     android:text="13" />
 
                 <TextView
@@ -84,7 +84,7 @@
 
                 <TextView
                     android:id="@+id/MON_num"
-                    style="@style/Calender_num"
+                    style="@style/wCalender_num"
                     android:text="14" />
 
                 <TextView
@@ -108,7 +108,7 @@
 
                 <TextView
                     android:id="@+id/TUE_num"
-                    style="@style/Calender_num"
+                    style="@style/wCalender_num"
                     android:text="15" />
 
                 <TextView
@@ -132,7 +132,7 @@
 
                 <TextView
                     android:id="@+id/WED_num"
-                    style="@style/Calender_num"
+                    style="@style/wCalender_num"
                     android:text="16" />
 
                 <TextView
@@ -156,7 +156,7 @@
 
                 <TextView
                     android:id="@+id/THU_num"
-                    style="@style/Calender_num"
+                    style="@style/wCalender_num"
                     android:text="17" />
 
                 <TextView
@@ -180,7 +180,7 @@
 
                 <TextView
                     android:id="@+id/FRI_num"
-                    style="@style/Calender_num"
+                    style="@style/wCalender_num"
                     android:text="18" />
 
                 <TextView
@@ -205,7 +205,7 @@
 
                 <TextView
                     android:id="@+id/SAT_num"
-                    style="@style/Calender_num"
+                    style="@style/wCalender_num"
                     android:text="19" />
 
                 <TextView

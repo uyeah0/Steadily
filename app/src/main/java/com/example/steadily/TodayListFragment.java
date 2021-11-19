@@ -51,7 +51,7 @@ public class TodayListFragment extends Fragment {
         wDate[5] = view.findViewById(R.id.FRI_num);
         wDate[6] = view.findViewById(R.id.SAT_num);
 
-        addScheduleButton = view.findViewById(R.id.imgbtnAddSchedule);
+        addScheduleButton = view.findViewById(R.id.imgBtnAddSchedule);
         addScheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,7 +61,7 @@ public class TodayListFragment extends Fragment {
             }
         });
 
-        mScheduleListView = view.findViewById(R.id.todaylistView);
+        mScheduleListView = view.findViewById(R.id.listView);
 
         TodayScheduleItem item1 = new TodayScheduleItem();
         item1.isChecked = true;

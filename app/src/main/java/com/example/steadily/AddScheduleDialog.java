@@ -61,7 +61,7 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.dialog_schedule_add);
 
-        editAddList = findViewById(R.id.editAddList);
+        editAddList = findViewById(R.id.etAddList);
         timePicker = findViewById(R.id.timePicker);
 
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
@@ -99,9 +99,9 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
 
         dialog.show();
 
-        final EditText editAddList = dialog.findViewById(R.id.editAddList);
-        final ImageButton imgBtnCancel = dialog.findViewById(R.id.imgbtnCancel);
-        final ImageButton imgBtnSave = dialog.findViewById(R.id.imgbtnScheduleSave);
+        final EditText editAddList = dialog.findViewById(R.id.etAddList);
+        final ImageButton imgBtnCancel = dialog.findViewById(R.id.imgBtnCancel);
+        final ImageButton imgBtnSave = dialog.findViewById(R.id.imgBtnScheduleSave);
 
         TimePicker timePicker = (TimePicker)dialog.findViewById(R.id.timePicker);
         timePicker.setIs24HourView(true);
@@ -138,10 +138,13 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             String get_title = snapshot.child("title").getValue(String.class);
-                            if(get_title == "e" && cnt != 1){
-                                myRef.child(uid).child("date").child(get_date).child("schedule").child(String.valueOf(ii)).child("title").setValue(title);
-                                myRef.child(uid).child("date").child(get_date).child("schedule").child(String.valueOf(ii)).child("time").setValue(time);
-                                cnt = 1;
+                            for(int j=0; j<5; j++){
+                                String jj = j+"";
+                                if(get_title == "e" && cnt != 1){
+                                    myRef.child(uid).child("date").child(get_date).child("schedule").child(jj).child("title").setValue(title);
+                                    myRef.child(uid).child("date").child(get_date).child("schedule").child(jj).child("time").setValue(time);
+                                    cnt = 1;
+                                }
                             }
                         }
 
