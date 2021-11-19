@@ -16,15 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TodayScheduleListAdapter extends BaseAdapter {
-    private Context mContext;
-    private CheckBox todaySchedule_chk;
-    private TextView todaySchedule_title;
-    private TextView todaySchedule_time;
-    private Button todaySchedule_modify_btn;
-    private TextView todaySchedule_num;
-    private TextView todaySchedule_numMessage;
-    private int countList = 0;
-
     private List<TodayScheduleItem> listViewItemArrayTodayScheduleList;
 
     public TodayScheduleListAdapter(List<TodayScheduleItem> scheduleList){

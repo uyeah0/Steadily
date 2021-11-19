@@ -14,4 +14,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calendar_view"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_selected_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="11.02"
+            android:layout_marginBottom="10dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            />
+
+        <ListView
+            android:id="@+id/completedlist"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <Button
+            android:id="@+id/btn_change"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/change_routine" />
+
+
+    </LinearLayout>
 </RelativeLayout>

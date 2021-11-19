@@ -272,9 +272,9 @@
 
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/todaylistView"
         android:layout_below="@+id/buttons_wrapper"
         android:layout_width="wrap_content"
-        android:layout_height="320dp"/>
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

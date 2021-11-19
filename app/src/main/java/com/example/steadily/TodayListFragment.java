@@ -51,6 +51,7 @@ public class TodayListFragment extends Fragment {
         wDate[5] = view.findViewById(R.id.FRI_num);
         wDate[6] = view.findViewById(R.id.SAT_num);
 
+        /*스케줄 추가 이벤트*/
         addScheduleButton = view.findViewById(R.id.imgBtnAddSchedule);
         addScheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +62,11 @@ public class TodayListFragment extends Fragment {
             }
         });
 
-        mScheduleListView = view.findViewById(R.id.listView);
+        mScheduleListView = view.findViewById(R.id.todaylistView);
 
+
+        /*임의의 데이터 생성*/
+        /*파이어베이스로 데이터 연결*/
         TodayScheduleItem item1 = new TodayScheduleItem();
         item1.isChecked = true;
         item1.title= "[운동]걸어서 등교하기!";
@@ -92,6 +96,7 @@ public class TodayListFragment extends Fragment {
         scheduleItems.add(item3);
         scheduleItems.add(item4);
 
+        /*어댑터로 연결*/
         TodayScheduleListAdapter adapter = new TodayScheduleListAdapter(scheduleItems);
 
         mScheduleListView.setAdapter(adapter);

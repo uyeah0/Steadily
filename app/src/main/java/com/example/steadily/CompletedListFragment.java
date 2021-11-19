@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +19,7 @@ import com.p_v.flexiblecalendar.entity.Event;
 import com.p_v.flexiblecalendar.view.BaseCellView;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -75,6 +79,22 @@ public class CompletedListFragment extends Fragment {
 */
 
 
+        TextView selectedDate = view.findViewById(R.id.tv_selected_date);
+        ListView completedList = view.findViewById(R.id.completedlist);
+        Button changeRoutine = view.findViewById(R.id.btn_change);
+
+        //ui 확인을 위한 DUMMY DATA
+        List<String> routines = new ArrayList<String>();
+        routines.add("주말 루틴 1");
+        routines.add("주말 루틴 2");
+        routines.add("주말 루틴 3");
+        routines.add("주말 루틴 4");
+        routines.add("주말 루틴 5");
+
+
+        CompletedListAdapter completedListAdapter = new CompletedListAdapter(routines);
+
+        completedList.setAdapter(completedListAdapter);
 
         return view;
     }
