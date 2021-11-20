@@ -43,7 +43,7 @@
         </activity>
 
         <!--TimerActivity-->
-        <activity android:name=".TimerActivity"></activity>
+        <activity android:name=".TimerActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

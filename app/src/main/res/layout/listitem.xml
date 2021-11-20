@@ -68,11 +68,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="20dp"
                     android:gravity="center_vertical"
+                    android:layout_toLeftOf="@+id/todaySchedule_timeMessage"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:text="20"/>
+
+                <TextView
+                    android:id="@+id/todaySchedule_timeMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:gravity="center_vertical"
                     android:layout_toLeftOf="@+id/todaySchedule_modify_btn"
                     android:layout_marginRight="12dp"
                     android:textSize="10sp"
                     android:textStyle="bold"
-                    android:text="20분"/>
+                    android:text="분"/>
 
                 <ImageButton
                     android:id="@+id/todaySchedule_modify_btn"

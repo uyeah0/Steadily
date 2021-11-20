@@ -45,6 +45,7 @@ public class TodayListFragment extends Fragment {
     ImageButton addScheduleButton;
     ListView mScheduleListView;
 
+    /*오늘 실천 리스트*/
     List<TodayScheduleItem> scheduleItems = new ArrayList<TodayScheduleItem>();
 
 
@@ -106,25 +107,25 @@ public class TodayListFragment extends Fragment {
         TodayScheduleItem item1 = new TodayScheduleItem();
         item1.isChecked = true;
         item1.title= "[운동]걸어서 등교하기!";
-        item1.time = "20분";
+        item1.time = "20";
         item1.repeatCount =5;
 
         TodayScheduleItem item2 = new TodayScheduleItem();
         item2.isChecked = false;
         item2.title= "[생활습관]일찍 일어나기!";
-        item2.time = "20분";
+        item2.time = "10";
         item2.repeatCount =5;
 
         TodayScheduleItem item3 = new TodayScheduleItem();
         item3.isChecked = true;
         item3.title= "[공부]프로젝트하기!";
-        item3.time = "20분";
+        item3.time = "10";
         item3.repeatCount =5;
 
         TodayScheduleItem item4 = new TodayScheduleItem();
         item4.isChecked = true;
         item4.title= "[공부]프로젝트하기!";
-        item4.time = "20분";
+        item4.time = "40";
         item4.repeatCount = 5;
 
         scheduleItems.add(item1);
@@ -191,22 +192,6 @@ public class TodayListFragment extends Fragment {
             //일 ~ 토
             for(int i=0;i<=6;i++){
                 String checkDate = todaySdf.format(cal.getTime()).substring(0,4)+""+todaySdf.format(cal.getTime()).substring(5,7)+""+wDate[i].getText();
-
-                int finalI = i;
-                /*myRef.child(uid).child("date").child(checkDate).child("0").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        get_symptom = snapshot.child("symptom").getValue(String.class);
-                        Log.d("myappp",checkDate+" 증상"+get_symptom);
-                        if(!(get_symptom.equals("e"))){
-                            weekCalendarDot[finalI].setVisibility(View.VISIBLE);
-                            Log.d("myappp2",get_symptom);
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) { }
-                });*/
-
             }
         }
     }

@@ -6,7 +6,7 @@
     android:padding="20dp">
 
     <ImageButton
-        android:id="@+id/imgbtnBack"
+        android:id="@+id/imgbtnTimerBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/arrow_left"
@@ -15,7 +15,7 @@
         />
 
     <ImageButton
-        android:id="@+id/Cancel_imgBtn"
+        android:id="@+id/imgbtnTimerCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -31,30 +31,62 @@
         android:layout_centerHorizontal="true"
         android:text="일찍 일어나기"
         android:textSize="30dp"
-        android:layout_marginTop="180dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="50dp"
         android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/txtTimertime"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/timeCount"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_below="@+id/txtTimerList"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
-        android:text="5:00"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:fontFamily="@font/nanumsquareb"
+        android:gravity="center_horizontal"
+        >
+        <TextView
+            android:id="@+id/txtTimerMinute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtTimerList"
+            android:layout_marginBottom="100dp"
+            android:text="5"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareb"
         />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/txtTimerMinute"
+            android:layout_marginBottom="100dp"
+            android:text=":"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareb"
+            />
+
+        <TextView
+            android:id="@+id/txtTimerSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/txtTimerMinute"
+            android:layout_marginBottom="100dp"
+            android:text="00"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="@font/nanumsquareb"
+            />
+    </LinearLayout>
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/buttons_wrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/txtTimertime"
+        android:layout_below="@+id/timeCount"
         android:gravity="center">
 
         <ImageButton
@@ -78,6 +110,20 @@
             />
 
         <ImageButton
+            android:id="@+id/imgbtnTimerStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:src="@drawable/stop"
+            android:layout_below="@+id/txtTimertime"
+            android:layout_centerHorizontal="true"
+            android:background="@color/white"
+            android:padding="25dp"
+            android:visibility="gone"
+            />
+
+
+        <ImageButton
             android:id="@+id/imgbtnTimerNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,15 +133,6 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <!--<ImageButton
-        android:id="@+id/imgbtnTimerStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/stop"
-        android:background="@color/white"
-        android:layout_below="@+id/buttons_wrapper"
-        android:layout_centerHorizontal="true" />-->
 
     <ImageButton
         android:layout_width="wrap_content"

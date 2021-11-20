@@ -47,6 +47,7 @@ public class TodayScheduleListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final Context context = parent.getContext();
 
+        // 리스트가 아무것도 없다면
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.listitem, parent, false);
@@ -69,11 +70,16 @@ public class TodayScheduleListAdapter extends BaseAdapter {
         time.setText(item.time);
         repeatCount.setText(Integer.toString(item.repeatCount));
 
+        /*타이머 창 띄우기*/
+
+        /*버튼 범위 늘리기*/
+        /*렐러티브 안 눌렀을 시 timer 화면 실행*/
         todaySchedule_RealativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, TimerActivity.class);
                 intent.putExtra("title", item.title);
+                intent.putExtra("minute",item.time);
                 context.startActivity(intent);
             }
         });
@@ -84,6 +90,7 @@ public class TodayScheduleListAdapter extends BaseAdapter {
             public void onClick(View view) {
                 Intent intent = new Intent(context, TimerActivity.class);
                 intent.putExtra("title", item.title);
+                intent.putExtra("minute",item.time);
                 context.startActivity(intent);
             }
         });
@@ -93,6 +100,7 @@ public class TodayScheduleListAdapter extends BaseAdapter {
             public void onClick(View view) {
                 Intent intent = new Intent(context, TimerActivity.class);
                 intent.putExtra("title", item.title);
+                intent.putExtra("minute",item.time);
                 context.startActivity(intent);
             }
         });
@@ -103,6 +111,7 @@ public class TodayScheduleListAdapter extends BaseAdapter {
             public void onClick(View view) {
                 Intent intent = new Intent(context, TimerActivity.class);
                 intent.putExtra("title", item.title);
+                intent.putExtra("minute",item.time);
                 context.startActivity(intent);
             }
         });
