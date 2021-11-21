@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@drawable/listitemborder"
+        android:background="#FFF77F"
         android:layout_margin="5dp"
         >
         <RelativeLayout
@@ -57,7 +57,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:maxLines="1"
                     android:ellipsize="end"
@@ -69,7 +70,7 @@
                     android:layout_height="20dp"
                     android:gravity="center_vertical"
                     android:layout_toLeftOf="@+id/todaySchedule_timeMessage"
-                    android:textSize="10sp"
+                    android:textSize="17sp"
                     android:textStyle="bold"
                     android:text="20"/>
 
@@ -79,10 +80,10 @@
                     android:layout_height="20dp"
                     android:gravity="center_vertical"
                     android:layout_toLeftOf="@+id/todaySchedule_modify_btn"
-                    android:layout_marginRight="12dp"
-                    android:textSize="10sp"
+                    android:layout_marginRight="15dp"
+                    android:textSize="17sp"
                     android:textStyle="bold"
-                    android:text="분"/>
+                    android:text=" 분"/>
 
                 <ImageButton
                     android:id="@+id/todaySchedule_modify_btn"
