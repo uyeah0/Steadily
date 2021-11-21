@@ -11,9 +11,10 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     private ArrayList<Fragment> fragmentList = new ArrayList<Fragment>();
     public FragmentAdapter(@NonNull FragmentManager fm){
         super(fm);
-        fragmentList.add(new CompletedListFragment()); // 전체목록
+
         fragmentList.add(new TodayListFragment()); // 오늘 실천
-        fragmentList.add(new StatisticsFragment()); // 통계
+        fragmentList.add(new CompletedListFragment()); // 전체목록
+        /*fragmentList.add(new StatisticsFragment()); // 게시판*/
     }
 
     @NonNull

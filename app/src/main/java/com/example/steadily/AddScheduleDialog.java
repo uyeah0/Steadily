@@ -36,6 +36,7 @@ import java.util.Date;
 
 public class AddScheduleDialog extends AppCompatActivity implements TimePicker.OnTimeChangedListener{
 
+    private String clickedDate;
     private Context mContext;
     EditText editAddList;
     TimePicker timePicker;
@@ -90,7 +91,7 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
         this.mContext = context;
     }
 
-    public void showDialog() {
+    public void showDialog(String clickedDate) {
         final Dialog dialog = new Dialog(mContext);
 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -105,6 +106,9 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
 
         TimePicker timePicker = (TimePicker)dialog.findViewById(R.id.timePicker);
         timePicker.setIs24HourView(true);
+
+        // 선택된 날짜 저장
+        clickedDate = clickedDate;
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference().child("users");
@@ -157,8 +161,6 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
                 dialog.hide();
             }
         });
-
-
-
     }
+
 }

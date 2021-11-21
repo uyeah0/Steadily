@@ -65,7 +65,13 @@ public class TodayScheduleListAdapter extends BaseAdapter {
 
         TodayScheduleItem item = listViewItemArrayTodayScheduleList.get(position);
 
-        isDoneSchedule.setChecked(item.isChecked);
+        // 파이어베이스 연동 관련
+        if(item.isChecked.equals("e")){
+            isDoneSchedule.setChecked(false);
+        }else{
+            isDoneSchedule.setChecked(true);
+        }
+
         title.setText(item.title);
         time.setText(item.time);
         repeatCount.setText(Integer.toString(item.repeatCount));
