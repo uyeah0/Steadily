@@ -87,6 +87,41 @@ public class TodayListFragment extends Fragment {
         //오늘날짜 색깔지정 (클릭한 날짜 색깔지정)
         WeekCalendar.setCardColor(todayDate.getDay(),wCalender);
 
+        //ListView
+        ListView listView = (ListView)view.findViewById(R.id.todaylistView);
+        //오늘로 기본 리스트 보여짐
+        WeekCalendar.createDataListToday(ymTextView,wDate,listView);
+
+        //각 날짜를 클릭했을 때 날짜와 일치하는 데이터 불러오기
+        wCalender[0].setOnClickListener(v -> { //일요일
+            Log.d("myapp","일요일 눌림");
+            WeekCalendar.setCardColor(0,wCalender);
+        });
+        wCalender[1].setOnClickListener(v -> {
+            Log.d("myapp","월요일 눌림");
+            WeekCalendar.setCardColor(1,wCalender);
+        });
+        wCalender[2].setOnClickListener(v -> {
+            Log.d("myapp","화요일 눌림");
+            WeekCalendar.setCardColor(2,wCalender);
+        });
+        wCalender[3].setOnClickListener(v -> {
+            Log.d("myapp","수요일 눌림");
+            WeekCalendar.setCardColor(3,wCalender);
+        });
+        wCalender[4].setOnClickListener(v -> {
+            Log.d("myapp","목요일 눌림");
+            WeekCalendar.setCardColor(4,wCalender);
+        });
+        wCalender[5].setOnClickListener(v -> {
+            Log.d("myapp","금요일 눌림");
+            WeekCalendar.setCardColor(5,wCalender);
+        });
+        wCalender[6].setOnClickListener(v -> {
+            Log.d("myapp","토요일 눌림");
+            WeekCalendar.setCardColor(6,wCalender);
+        });
+
 
         /*스케줄 추가 이벤트*/
         addScheduleButton = view.findViewById(R.id.imgBtnAddSchedule);
@@ -145,6 +180,10 @@ public class TodayListFragment extends Fragment {
     }
 
     static class WeekCalendar{
+        //  날짜 변경 메서드
+        static void createDataListToday(TextView ymTextView, TextView[] wDate, ListView listView){
+            Calendar calendar = Calendar.getInstance(Locale.KOREA);
+        }
 
         static void setCardColor(int index, CardView[] wCalender){
             wCalender[index].setCardBackgroundColor(Color.parseColor("#FFFF00"));
@@ -159,7 +198,6 @@ public class TodayListFragment extends Fragment {
             firebaseAuth =  FirebaseAuth.getInstance();
 
 
-            /*Log.d("mytag","setWeekCalenderDate 과정 통과");*/
             //날짜 형식 지정
             SimpleDateFormat todaySdf = new SimpleDateFormat("yyyy.MM.dd", Locale.KOREA); //한국 기준 시간 사용
             todaySdf.format(date); //한국 시간 적용
@@ -189,10 +227,7 @@ public class TodayListFragment extends Fragment {
                 Log.d("myapp","캘린더 : "+cal.get(Calendar.YEAR)+monthValue+dayValue);
             }
 
-            //일 ~ 토
-            for(int i=0;i<=6;i++){
-                String checkDate = todaySdf.format(cal.getTime()).substring(0,4)+""+todaySdf.format(cal.getTime()).substring(5,7)+""+wDate[i].getText();
-            }
+
         }
     }
 
