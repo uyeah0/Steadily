@@ -1,5 +1,6 @@
 package com.example.steadily;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -7,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,8 +16,11 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
@@ -24,6 +29,8 @@ import java.util.TimerTask;
 
 public class TimerActivity extends AppCompatActivity {
     int iMinute=0, iSecond=0;
+
+    String fm = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final Context mContext = getApplicationContext();
@@ -64,13 +71,39 @@ public class TimerActivity extends AppCompatActivity {
 
         // 리스트 제목 타이머로 가져오기
         title.setText(intent.getStringExtra("title"));
+
+
+        for(int i=0; i<5; i++){
+            String ii = i+"";
+
+            myRef.child(uid).child("date").child("20211121").child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String get_title = snapshot.child("title").getValue(String.class);
+                    String get_time;
+
+                    //Log.d("add", ii + get_title + title + time);
+                    if(get_title!= null && get_title.equals(title)){
+                        get_time = snapshot.child("time").getValue(String.class);
+                        fm = get_time;
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
         // 리스트 분 타이머로 가져오기
         //minuteTV.setText(intent.getStringExtra("minute"));
-        minuteTV.setText("1");
+        minuteTV.setText(fm);
         // 리스트 초 타이머로 가져오기
         /*second.setText(intent.getStringExtra("second"));*/
         // 임의의 데이터
-        secondTV.setText("5");
+        secondTV.setText("0");
+
 
 
         startBtn.setOnClickListener(new View.OnClickListener() {

@@ -46,7 +46,8 @@ public class TodayListFragment extends Fragment {
     private String clickedDate;
 
     static String d = "";
-
+    static String tit = "", tim ="", don = "";
+    static String get_title, get_time, get_done;
     Activity mActivity;
 
     /*오늘 실천 추가 버튼*/
@@ -54,7 +55,6 @@ public class TodayListFragment extends Fragment {
     ListView mScheduleListView;
 
     /*오늘 실천 리스트*/
-    List<TodayScheduleItem> scheduleItems = new ArrayList<TodayScheduleItem>();
 
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -155,28 +155,33 @@ public class TodayListFragment extends Fragment {
             }
         });
 
-        mScheduleListView = view.findViewById(R.id.todaylistView);
+
 
 
         /*임의의 데이터 생성*/
         /*파이어베이스로 데이터 연결*/
 
+        List<TodayScheduleItem> scheduleItems = new ArrayList<TodayScheduleItem>();
+        mScheduleListView = view.findViewById(R.id.todaylistView);
         TodayScheduleListAdapter adapter = new TodayScheduleListAdapter(scheduleItems);
         mScheduleListView.setAdapter(adapter);
+
 
         for(int i=0; i<5; i++){
             String ii = i+"";
             int it = i;
 
-            myRef.child(uid).child("date").child(d).child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
+            TodayScheduleItem[] item1 = new TodayScheduleItem[5];
+
+            myRef.child(uid).child("date").child(clickedDate).child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String get_title = snapshot.child("title").getValue(String.class);
-                    String get_time = snapshot.child("time").getValue(String.class);
-                    String get_done = snapshot.child("done").getValue(String.class);
+                    get_title = snapshot.child("title").getValue(String.class);
+                    get_time = snapshot.child("time").getValue(String.class);
+                    get_done = snapshot.child("done").getValue(String.class);
 
+                    Log.d("get", get_title+get_time+get_done);
                     if(get_title != null && !get_title.equals("e")) {
-                        TodayScheduleItem[] item1 = new TodayScheduleItem[5];
                         item1[it] = new TodayScheduleItem();
 
                         item1[it].isChecked = get_done;
@@ -187,7 +192,6 @@ public class TodayListFragment extends Fragment {
 
                         mScheduleListView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
-
                     }
 
                 }
@@ -197,6 +201,8 @@ public class TodayListFragment extends Fragment {
 
                 }
             });
+            adapter.notifyDataSetChanged();
+
         }
 
         /*어댑터로 연결*/
