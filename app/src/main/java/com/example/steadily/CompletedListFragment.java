@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -15,12 +14,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.p_v.flexiblecalendar.FlexibleCalendarView;
-import com.p_v.flexiblecalendar.entity.Event;
 import com.p_v.flexiblecalendar.view.BaseCellView;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 // 전체 목록
@@ -37,21 +33,22 @@ public class CompletedListFragment extends Fragment {
 
         /*월간캘린더커스텀*/
         FlexibleCalendarView flexibleCalendarView = view.findViewById(R.id.calendar_view);
-     /*   flexibleCalendarView.setCalendarView(new FlexibleCalendarView.CalendarView() {
+        flexibleCalendarView.setCalendarView(new FlexibleCalendarView.CalendarView() {
             @Override
             public BaseCellView getCellView(int position, View convertView, ViewGroup parent, int cellType) {
                 //customize the date cells
                 BaseCellView cellView = (BaseCellView) convertView;
                 if (cellView == null) {
-
                     LayoutInflater inflater = LayoutInflater.from(mContext);
-                    cellView = (BaseCellView) inflater.inflate(R.layout.calendar3_date_cell_view, null);
+                    cellView = (BaseCellView) inflater.inflate(R.layout.calendar_date_cell_view, null);
                 }
                 if (cellType == BaseCellView.TODAY){
-                    cellView.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+                    cellView.setTextColor(getResources().getColor(android.R.color.holo_red_light));
+                    cellView.setBackground(mContext.getResources().getDrawable(R.drawable.cell_yellow_background));
+
                     cellView.setTextSize(15);
                 } else {
-                    cellView.setTextColor(getResources().getColor(android.R.color.white));
+                    cellView.setTextColor(getResources().getColor(R.color.black));
                     cellView.setTextSize(12);
                 }
                 return cellView;
@@ -63,9 +60,9 @@ public class CompletedListFragment extends Fragment {
                 BaseCellView cellView = (BaseCellView) convertView;
                 if (cellView == null) {
                     LayoutInflater inflater = LayoutInflater.from(mContext);
-                    cellView = (BaseCellView) inflater.inflate(R.layout.calendar3_week_cell_view, null);
-                    *//*cellView.setBackgroundColor(getResources().getColor(android.R.color.holo_purple));
-                    cellView.setTextColor(getResources().getColor(android.R.color.holo_orange_light));*//*
+                    cellView = (BaseCellView) inflater.inflate(R.layout.calendar_week_cell_view, null);
+                    /*cellView.setBackgroundColor(getResources().getColor(android.R.color.white));*/
+                    cellView.setTextColor(getResources().getColor(android.R.color.black));
                     cellView.setTextSize(18);
                 }
                 return cellView;
@@ -76,7 +73,6 @@ public class CompletedListFragment extends Fragment {
                 return null;
             }
         });
-*/
 
 
         TextView selectedDate = view.findViewById(R.id.tv_selected_date);
