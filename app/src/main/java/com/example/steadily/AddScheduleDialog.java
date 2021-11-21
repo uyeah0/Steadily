@@ -36,7 +36,7 @@ import java.util.Date;
 
 public class AddScheduleDialog extends AppCompatActivity implements TimePicker.OnTimeChangedListener{
 
-    private String clickedDate;
+    static String clickedDate;
     private Context mContext;
     EditText editAddList;
     TimePicker timePicker;
@@ -138,17 +138,17 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
 
                 for(int i=0; i<5; i++){
                     String ii = i+"";
-                    myRef.child(uid).child("date").child(get_date).child("schedule").child(String.valueOf(i)).addListenerForSingleValueEvent(new ValueEventListener() {
+
+                    myRef.child(uid).child("date").child("20211121").child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             String get_title = snapshot.child("title").getValue(String.class);
-                            for(int j=0; j<5; j++){
-                                String jj = j+"";
-                                if(get_title == "e" && cnt != 1){
-                                    myRef.child(uid).child("date").child(get_date).child("schedule").child(jj).child("title").setValue(title);
-                                    myRef.child(uid).child("date").child(get_date).child("schedule").child(jj).child("time").setValue(time);
-                                    cnt = 1;
-                                }
+
+                            Log.d("add", ii + get_title + title + time);
+                            if(get_title!= null && get_title.equals("e") && cnt != 1){
+                                myRef.child(uid).child("date").child("20211121").child("schedule").child(ii).child("title").setValue(title);
+                                myRef.child(uid).child("date").child("20211121").child("schedule").child(ii).child("time").setValue(time);
+                                cnt = 1;
                             }
                         }
 
@@ -158,6 +158,7 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
                         }
                     });
                 }
+
                 dialog.hide();
             }
         });

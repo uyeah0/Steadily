@@ -24,6 +24,12 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,8 +45,7 @@ public class TodayListFragment extends Fragment {
     static FirebaseAuth firebaseAuth =  FirebaseAuth.getInstance();
     private String clickedDate;
 
-
-
+    static String d = "";
 
     Activity mActivity;
 
@@ -51,6 +56,12 @@ public class TodayListFragment extends Fragment {
     /*오늘 실천 리스트*/
     List<TodayScheduleItem> scheduleItems = new ArrayList<TodayScheduleItem>();
 
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference().child("users");
+
+    FirebaseUser user = firebaseAuth.getCurrentUser();
+    String uid = user.getUid();
 
     @Nullable
     @Override
@@ -149,41 +160,47 @@ public class TodayListFragment extends Fragment {
 
         /*임의의 데이터 생성*/
         /*파이어베이스로 데이터 연결*/
-        TodayScheduleItem item1 = new TodayScheduleItem();
-        item1.isChecked = "e";
-        item1.title= "[운동]걸어서 등교하기!";
-        item1.time = "20";
-        item1.repeatCount =5;
 
-        TodayScheduleItem item2 = new TodayScheduleItem();
-        item2.isChecked = "e";
-        item2.title= "[생활습관]일찍 일어나기!";
-        item2.time = "10";
-        item2.repeatCount =5;
+        for(int i=0; i<5; i++){
+            String ii = i+"";
+            int it = i;
 
-        TodayScheduleItem item3 = new TodayScheduleItem();
-        item3.isChecked = "e";
-        item3.title= "[공부]프로젝트하기!";
-        item3.time = "10";
-        item3.repeatCount =5;
+            myRef.child(uid).child("date").child(d).child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String get_title = snapshot.child("title").getValue(String.class);
+                    String get_time = snapshot.child("time").getValue(String.class);
+                    String get_done = snapshot.child("done").getValue(String.class);
 
-        TodayScheduleItem item4 = new TodayScheduleItem();
-        item4.isChecked = "t";
-        item4.title= "[공부]프로젝트하기!";
-        item4.time = "40";
-        item4.repeatCount = 5;
+                    if(get_title != null && !get_title.equals("e")) {
+                        TodayScheduleItem[] item1 = new TodayScheduleItem[10];
+                        item1[it] = new TodayScheduleItem();
 
-        scheduleItems.add(item1);
-        scheduleItems.add(item2);
-        scheduleItems.add(item3);
-        scheduleItems.add(item4);
+                        //item1[it].isChecked = get_done;
+                        item1[it].title = get_title;
+                        item1[it].time = get_time;
+
+                        scheduleItems.add(item1[it]);
+
+                        TodayScheduleListAdapter adapter = new TodayScheduleListAdapter(scheduleItems);
+                        mScheduleListView.setAdapter(adapter);
+
+                        mScheduleListView.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
 
         /*어댑터로 연결*/
-        TodayScheduleListAdapter adapter = new TodayScheduleListAdapter(scheduleItems);
-
-        mScheduleListView.setAdapter(adapter);
-
-
 
 
         return view;
@@ -236,6 +253,8 @@ public class TodayListFragment extends Fragment {
                 else dayValue = cal.get(Calendar.DAY_OF_MONTH)+"";
                 //밑에 로그부분대로 파이어베이스에 넣으면 됩니다~ 특수문자없음
                 Log.d("myapp","캘린더 : "+cal.get(Calendar.YEAR)+monthValue+dayValue);
+
+                d = cal.get(Calendar.YEAR)+monthValue+dayValue;
             }
 
 
