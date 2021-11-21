@@ -60,7 +60,7 @@ public class TodayScheduleListAdapter extends BaseAdapter {
         TextView time = convertView.findViewById(R.id.todaySchedule_time);
         ImageButton modify = convertView.findViewById(R.id.todaySchedule_modify_btn);
         LinearLayout todaySchedule_LinearLayout = convertView.findViewById(R.id.todaySchedule_LinearLayout);
-        TextView repeatCount = convertView.findViewById(R.id.todaySchedule_num);
+        //TextView repeatCount = convertView.findViewById(R.id.todaySchedule_num);
 
 
         TodayScheduleItem item = listViewItemArrayTodayScheduleList.get(position);
@@ -74,7 +74,7 @@ public class TodayScheduleListAdapter extends BaseAdapter {
 
         title.setText(item.title);
         time.setText(item.time);
-        repeatCount.setText(Integer.toString(item.repeatCount));
+        //repeatCount.setText(Integer.toString(item.repeatCount));
 
         /*타이머 창 띄우기*/
 

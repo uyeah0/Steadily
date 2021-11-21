@@ -60,6 +60,18 @@
         app:layout_constraintStart_toStartOf="@+id/timePicker"
         app:layout_constraintTop_toTopOf="@+id/timePicker" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgViewPlayTime"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="14dp"
+        android:textColor="@color/black"
+        android:text="[ 시 : 분 ] 형식으로 선택해주세요!"
+        app:layout_constraintStart_toStartOf="@+id/imgViewPlayTime"
+        app:layout_constraintTop_toTopOf="@+id/timePicker"
+        />
     <TimePicker
         android:id="@+id/timePicker"
         android:layout_width="match_parent"

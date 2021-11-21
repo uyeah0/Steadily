@@ -130,7 +130,8 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
             public void onClick(View view) {
                 //파이어베이스 저장 코드 추가
                 String title = editAddList.getText().toString();
-                String time = timePicker.getCurrentHour().toString() + timePicker.getCurrentMinute().toString();
+                String h = (timePicker.getCurrentHour()*60) +"";
+                String time = h + timePicker.getCurrentMinute().toString();
                 myRef.child(uid).child("date").child(time).child("schedule");
 
                 FirebasePost f1 = new FirebasePost();

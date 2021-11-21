@@ -161,6 +161,9 @@ public class TodayListFragment extends Fragment {
         /*임의의 데이터 생성*/
         /*파이어베이스로 데이터 연결*/
 
+        TodayScheduleListAdapter adapter = new TodayScheduleListAdapter(scheduleItems);
+        mScheduleListView.setAdapter(adapter);
+
         for(int i=0; i<5; i++){
             String ii = i+"";
             int it = i;
@@ -173,21 +176,17 @@ public class TodayListFragment extends Fragment {
                     String get_done = snapshot.child("done").getValue(String.class);
 
                     if(get_title != null && !get_title.equals("e")) {
-                        TodayScheduleItem[] item1 = new TodayScheduleItem[10];
+                        TodayScheduleItem[] item1 = new TodayScheduleItem[5];
                         item1[it] = new TodayScheduleItem();
 
-                        //item1[it].isChecked = get_done;
+                        item1[it].isChecked = get_done;
                         item1[it].title = get_title;
                         item1[it].time = get_time;
 
                         scheduleItems.add(item1[it]);
 
-                        TodayScheduleListAdapter adapter = new TodayScheduleListAdapter(scheduleItems);
-                        mScheduleListView.setAdapter(adapter);
-
                         mScheduleListView.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
-
 
                     }
 

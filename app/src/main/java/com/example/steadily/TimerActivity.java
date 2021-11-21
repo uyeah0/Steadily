@@ -12,6 +12,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.w3c.dom.Text;
 
 import java.util.Timer;
@@ -22,6 +27,7 @@ public class TimerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final Context mContext = getApplicationContext();
+        FirebaseAuth firebaseAuth =  FirebaseAuth.getInstance();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
@@ -34,6 +40,11 @@ public class TimerActivity extends AppCompatActivity {
         ImageButton startBtn = findViewById(R.id.imgbtnTimerPlay);
         ImageButton stopBtn = findViewById(R.id.imgbtnTimerStop);
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference().child("users");
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        String uid = user.getUid();
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
