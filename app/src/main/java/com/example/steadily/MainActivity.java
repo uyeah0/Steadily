@@ -29,9 +29,10 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter); // 뷰페이저와 어댑터 연결
         tabLayout.setupWithViewPager(viewPager); // 뷰페이저와 탭레이아웃 연동
 
-        tabLayout.getTabAt(0).setText(R.string.tab_menu_completed);
-        tabLayout.getTabAt(1).setText(R.string.tab_menu_today);
-        tabLayout.getTabAt(2).setText(R.string.tab_menu_statistics);
+        tabLayout.getTabAt(0).setText(R.string.tab_menu_today);
+        tabLayout.getTabAt(1).setText(R.string.tab_menu_completed);
+
+//        tabLayout.getTabAt(2).setText(R.string.tab_menu_statistics);
 
         Date currentTime = Calendar.getInstance().getTime();
         String date_text = new SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(currentTime);
