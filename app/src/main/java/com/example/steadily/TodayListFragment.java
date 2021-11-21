@@ -37,6 +37,9 @@ public class TodayListFragment extends Fragment {
 
     // firebase
     static FirebaseAuth firebaseAuth =  FirebaseAuth.getInstance();
+    private String clickedDate;
+
+
 
 
     Activity mActivity;
@@ -47,7 +50,6 @@ public class TodayListFragment extends Fragment {
 
     /*오늘 실천 리스트*/
     List<TodayScheduleItem> scheduleItems = new ArrayList<TodayScheduleItem>();
-
 
 
     @Nullable
@@ -95,33 +97,41 @@ public class TodayListFragment extends Fragment {
         //각 날짜를 클릭했을 때 날짜와 일치하는 데이터 불러오기
         wCalender[0].setOnClickListener(v -> { //일요일
             Log.d("myapp","일요일 눌림");
+            saveDate(ymTextView,wDate,0,listView);
             WeekCalendar.setCardColor(0,wCalender);
         });
         wCalender[1].setOnClickListener(v -> {
             Log.d("myapp","월요일 눌림");
+            saveDate(ymTextView,wDate,1,listView);
             WeekCalendar.setCardColor(1,wCalender);
         });
         wCalender[2].setOnClickListener(v -> {
             Log.d("myapp","화요일 눌림");
+            saveDate(ymTextView,wDate,2,listView);
             WeekCalendar.setCardColor(2,wCalender);
         });
         wCalender[3].setOnClickListener(v -> {
             Log.d("myapp","수요일 눌림");
+            saveDate(ymTextView,wDate,3,listView);
             WeekCalendar.setCardColor(3,wCalender);
         });
         wCalender[4].setOnClickListener(v -> {
             Log.d("myapp","목요일 눌림");
+            saveDate(ymTextView,wDate,4,listView);
             WeekCalendar.setCardColor(4,wCalender);
         });
         wCalender[5].setOnClickListener(v -> {
             Log.d("myapp","금요일 눌림");
+            saveDate(ymTextView,wDate,5,listView);
             WeekCalendar.setCardColor(5,wCalender);
         });
         wCalender[6].setOnClickListener(v -> {
             Log.d("myapp","토요일 눌림");
+            saveDate(ymTextView,wDate,6,listView);
             WeekCalendar.setCardColor(6,wCalender);
         });
 
+        clickedDate = ymTextView.getText().toString().substring(0,4)+""+ymTextView.getText().toString().substring(6,8)+""+todayDate.getDate();
 
         /*스케줄 추가 이벤트*/
         addScheduleButton = view.findViewById(R.id.imgBtnAddSchedule);
@@ -130,7 +140,7 @@ public class TodayListFragment extends Fragment {
             public void onClick(View view) {
 
                 AddScheduleDialog addScheduleDialog = new AddScheduleDialog(mActivity);
-                addScheduleDialog.showDialog();
+                addScheduleDialog.showDialog(clickedDate);
             }
         });
 
@@ -140,25 +150,25 @@ public class TodayListFragment extends Fragment {
         /*임의의 데이터 생성*/
         /*파이어베이스로 데이터 연결*/
         TodayScheduleItem item1 = new TodayScheduleItem();
-        item1.isChecked = true;
+        item1.isChecked = "e";
         item1.title= "[운동]걸어서 등교하기!";
         item1.time = "20";
         item1.repeatCount =5;
 
         TodayScheduleItem item2 = new TodayScheduleItem();
-        item2.isChecked = false;
+        item2.isChecked = "e";
         item2.title= "[생활습관]일찍 일어나기!";
         item2.time = "10";
         item2.repeatCount =5;
 
         TodayScheduleItem item3 = new TodayScheduleItem();
-        item3.isChecked = true;
+        item3.isChecked = "e";
         item3.title= "[공부]프로젝트하기!";
         item3.time = "10";
         item3.repeatCount =5;
 
         TodayScheduleItem item4 = new TodayScheduleItem();
-        item4.isChecked = true;
+        item4.isChecked = "t";
         item4.title= "[공부]프로젝트하기!";
         item4.time = "40";
         item4.repeatCount = 5;
@@ -178,7 +188,6 @@ public class TodayListFragment extends Fragment {
 
         return view;
     }
-
     static class WeekCalendar{
         //  날짜 변경 메서드
         static void createDataListToday(TextView ymTextView, TextView[] wDate, ListView listView){
@@ -192,6 +201,8 @@ public class TodayListFragment extends Fragment {
                 wCalender[i].setCardBackgroundColor(Color.parseColor("#0a000000"));
             }
         }
+
+
 
         @SuppressLint("SetTextI18n")
         void setWeekCalenderDate(View view, Date date, TextView ymTextView, TextView[] wDate){ //주간캘린더 날짜변경 메소드
@@ -231,4 +242,11 @@ public class TodayListFragment extends Fragment {
         }
     }
 
+    // 클릭된 날짜 저장
+    public void saveDate(TextView ymTextView, TextView[] wDate, int index, ListView listView) {
+        //0000.00.00형식의 String 만들기
+        clickedDate = ymTextView.getText().toString().substring(0,4)+""+ymTextView.getText().toString().substring(6,8)+""+wDate[index].getText().toString();
+
+        //날짜 저장
+    }
 }
