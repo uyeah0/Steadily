@@ -31,7 +31,7 @@ public class TodayScheduleListAdapter extends BaseAdapter {
     }
 
     // 지정한 위치에 있는 아이템 반환
-   @Override
+    @Override
     public Object getItem(int position) {
         return listViewItemArrayTodayScheduleList.get(position);
     }
