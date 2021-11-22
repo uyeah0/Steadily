@@ -2,6 +2,7 @@ package com.example.steadily;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class TodayScheduleListAdapter extends BaseAdapter {
     private List<TodayScheduleItem> listViewItemArrayTodayScheduleList;
@@ -58,7 +60,7 @@ public class TodayScheduleListAdapter extends BaseAdapter {
         CheckBox isDoneSchedule = convertView.findViewById(R.id.todaySchedule_chk);
         TextView title = convertView.findViewById(R.id.todaySchedule_title);
         TextView time = convertView.findViewById(R.id.todaySchedule_time);
-        ImageButton modify = convertView.findViewById(R.id.todaySchedule_modify_btn);
+        //ImageButton modify = convertView.findViewById(R.id.todaySchedule_modify_btn);
         LinearLayout todaySchedule_LinearLayout = convertView.findViewById(R.id.todaySchedule_LinearLayout);
         //TextView repeatCount = convertView.findViewById(R.id.todaySchedule_num);
 
@@ -68,6 +70,7 @@ public class TodayScheduleListAdapter extends BaseAdapter {
         // 파이어베이스 연동 관련
         if(item.isChecked.equals("e")){
             isDoneSchedule.setChecked(false);
+            Log.d("ischeck", item.isChecked);
         }else{
             isDoneSchedule.setChecked(true);
         }
@@ -124,13 +127,13 @@ public class TodayScheduleListAdapter extends BaseAdapter {
 
         /*수정 버튼 눌렀을 시 수정 화면 실행*/
         /*현재 토스트로 구현*/
-        modify.setOnClickListener(new View.OnClickListener() {
+        /*modify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context,  "이미지 버튼이 눌려 졌습니다.", Toast.LENGTH_SHORT).show();
             }
         });
-
+*/
         time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

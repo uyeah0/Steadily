@@ -212,8 +212,9 @@ public class TodayListFragment extends Fragment {
                         get_time = snapshot.child("time").getValue(String.class);
                         get_done = snapshot.child("done").getValue(String.class);
 
-                        Log.d("get", get_title+get_time+get_done);
+                        Log.d("get_Today", get_title+get_time+get_done);
                         if(get_title != null && !get_title.equals("e")) {
+                            Log.d("get_if", get_done+get_time+get_title);
                             item1[it] = new TodayScheduleItem();
 
                             item1[it].isChecked = get_done;
@@ -223,9 +224,9 @@ public class TodayListFragment extends Fragment {
                             scheduleItems.add(item1[it]);
 
                             //mScheduleListView.setAdapter(adapter);
-                            adapter.notifyDataSetChanged();
+                            
                         }
-
+                        adapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -237,6 +238,7 @@ public class TodayListFragment extends Fragment {
 
             }
             adapter.notifyDataSetChanged();
+
         }
 
 

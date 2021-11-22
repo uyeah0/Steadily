@@ -24,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -73,10 +75,16 @@ public class TimerActivity extends AppCompatActivity {
         title.setText(intent.getStringExtra("title"));
 
 
+        //날짜 및 시간 형식 지정
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+        //Date 객체 사용
+        Date date = new Date();
+        String time = simpleDateFormat.format(date);
+
         for(int i=0; i<5; i++){
             String ii = i+"";
 
-            myRef.child(uid).child("date").child("20211121").child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
+            myRef.child(uid).child("date").child(time).child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String get_title = snapshot.child("title").getValue(String.class);
@@ -97,7 +105,6 @@ public class TimerActivity extends AppCompatActivity {
 
         // 리스트 분 타이머로 가져오기
         //minuteTV.setText(intent.getStringExtra("minute"));
-
         // 리스트 초 타이머로 가져오기
         /*second.setText(intent.getStringExtra("second"));*/
         // 임의의 데이터
