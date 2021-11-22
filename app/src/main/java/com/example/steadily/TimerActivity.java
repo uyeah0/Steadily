@@ -80,12 +80,11 @@ public class TimerActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String get_title = snapshot.child("title").getValue(String.class);
-                    String get_time;
 
                     //Log.d("add", ii + get_title + title + time);
                     if(get_title!= null && get_title.equals(title)){
-                        get_time = snapshot.child("time").getValue(String.class);
-                        fm = get_time;
+                        String get_time = snapshot.child("time").getValue(String.class);
+                        minuteTV.setText(get_time);
                     }
                 }
 
@@ -98,7 +97,7 @@ public class TimerActivity extends AppCompatActivity {
 
         // 리스트 분 타이머로 가져오기
         //minuteTV.setText(intent.getStringExtra("minute"));
-        minuteTV.setText(fm);
+
         // 리스트 초 타이머로 가져오기
         /*second.setText(intent.getStringExtra("second"));*/
         // 임의의 데이터
