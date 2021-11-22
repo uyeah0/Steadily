@@ -31,7 +31,7 @@ public class CompletedListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragement_completedlist, container, false);
 
-        /*월간캘린더커스텀*/
+       /* *//*월간캘린더커스텀*//*
         FlexibleCalendarView flexibleCalendarView = view.findViewById(R.id.calendar_view);
         flexibleCalendarView.setCalendarView(new FlexibleCalendarView.CalendarView() {
             @Override
@@ -45,7 +45,6 @@ public class CompletedListFragment extends Fragment {
                 if (cellType == BaseCellView.TODAY){
                     cellView.setTextColor(getResources().getColor(android.R.color.holo_red_light));
                     cellView.setBackground(mContext.getResources().getDrawable(R.drawable.cell_yellow_background));
-
                     cellView.setTextSize(15);
                 } else {
                     cellView.setTextColor(getResources().getColor(R.color.black));
@@ -61,7 +60,7 @@ public class CompletedListFragment extends Fragment {
                 if (cellView == null) {
                     LayoutInflater inflater = LayoutInflater.from(mContext);
                     cellView = (BaseCellView) inflater.inflate(R.layout.calendar_week_cell_view, null);
-                    /*cellView.setBackgroundColor(getResources().getColor(android.R.color.white));*/
+
                     cellView.setTextColor(getResources().getColor(android.R.color.black));
                     cellView.setTextSize(18);
                 }
@@ -70,10 +69,9 @@ public class CompletedListFragment extends Fragment {
 
             @Override
             public String getDayOfWeekDisplayValue(int dayOfWeek, String defaultValue) {
-                return null;
+                return String.valueOf(defaultValue.charAt(0));
             }
-        });
-
+        });*/
 
         TextView selectedDate = view.findViewById(R.id.tv_selected_date);
         ListView completedList = view.findViewById(R.id.completedlist);

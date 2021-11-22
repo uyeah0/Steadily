@@ -101,42 +101,55 @@ public class TodayListFragment extends Fragment {
         //오늘로 기본 리스트 보여짐
         WeekCalendar.createDataListToday(ymTextView,wDate,listView);
 
+
+        clickedDate = ymTextView.getText().toString().substring(0,4)+""+ymTextView.getText().toString().substring(6,8)+""+todayDate.getDate();
+
         //각 날짜를 클릭했을 때 날짜와 일치하는 데이터 불러오기
         wCalender[0].setOnClickListener(v -> { //일요일
             Log.d("myapp","일요일 눌림");
             weekCalendar.createDataList(ymTextView,wDate,0,listView);
+            saveDate(ymTextView, wDate,0,listView);
             WeekCalendar.setCardColor(0,wCalender);
         });
         wCalender[1].setOnClickListener(v -> {
             Log.d("myapp","월요일 눌림");
             weekCalendar.createDataList(ymTextView,wDate,1,listView);
+            saveDate(ymTextView, wDate,1,listView);
             WeekCalendar.setCardColor(1,wCalender);
         });
         wCalender[2].setOnClickListener(v -> {
             Log.d("myapp","화요일 눌림");
             weekCalendar.createDataList(ymTextView,wDate,2,listView);
+            saveDate(ymTextView, wDate,2,listView);
             WeekCalendar.setCardColor(2,wCalender);
         });
         wCalender[3].setOnClickListener(v -> {
             Log.d("myapp","수요일 눌림");
             weekCalendar.createDataList(ymTextView,wDate,3,listView);
+            saveDate(ymTextView, wDate,3,listView);
             WeekCalendar.setCardColor(3,wCalender);
         });
         wCalender[4].setOnClickListener(v -> {
             Log.d("myapp","목요일 눌림");
             weekCalendar.createDataList(ymTextView,wDate,4,listView);
+            saveDate(ymTextView, wDate,4,listView);
             WeekCalendar.setCardColor(4,wCalender);
         });
         wCalender[5].setOnClickListener(v -> {
             Log.d("myapp","금요일 눌림");
             weekCalendar.createDataList(ymTextView,wDate,5,listView);
+            saveDate(ymTextView, wDate,5,listView);
             WeekCalendar.setCardColor(5,wCalender);
         });
         wCalender[6].setOnClickListener(v -> {
             Log.d("myapp","토요일 눌림");
             weekCalendar.createDataList(ymTextView,wDate,6,listView);
+            saveDate(ymTextView, wDate,6,listView);
             WeekCalendar.setCardColor(6,wCalender);
         });
+
+
+
 
         /*스케줄 추가 이벤트*/
         addScheduleButton = view.findViewById(R.id.imgBtnAddSchedule);
@@ -264,5 +277,15 @@ public class TodayListFragment extends Fragment {
 
 
         }
+
+
+    }
+
+    // 클릭된 날짜 저장
+    public void saveDate(TextView ymTextView, TextView[] wDate, int index, ListView listView) {
+        //0000.00.00형식의 String 만들기
+        clickedDate = ymTextView.getText().toString().substring(0,4)+""+ymTextView.getText().toString().substring(6,8)+""+wDate[index].getText().toString();
+
+        //날짜 저장
     }
 }
