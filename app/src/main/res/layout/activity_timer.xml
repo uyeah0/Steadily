@@ -3,17 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:padding="20dp">
 
-    <ImageButton
+   <!-- <ImageButton
         android:id="@+id/imgbtnTimerBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/arrow_left"
         android:background="@color/white"
         android:layout_margin="14dp"
-        />
-
+        />-->
+<!--
     <ImageButton
         android:id="@+id/imgbtnTimerCancel"
         android:layout_width="wrap_content"
@@ -22,7 +23,7 @@
         android:src="@drawable/cancel"
         android:background="@color/white"
         android:layout_margin="13dp"
-        />
+        />-->
 
     <TextView
         android:id="@+id/txtTimerList"
@@ -89,13 +90,13 @@
         android:layout_below="@+id/timeCount"
         android:gravity="center">
 
-        <ImageButton
+      <!--  <ImageButton
             android:id="@+id/imgbtnTimerRepeat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/imgbtnTimerPlay"
             android:background="@color/white"
-            android:src="@drawable/repeat" />
+            android:src="@drawable/repeat" />-->
 
         <ImageButton
             android:id="@+id/imgbtnTimerPlay"
@@ -108,6 +109,18 @@
             android:background="@color/white"
             android:padding="25dp"
             />
+
+       <!-- <ImageButton
+            android:id="@+id/imgbtnTimerStopBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:src="@drawable/stop"
+            android:layout_below="@+id/txtTimertime"
+            android:layout_centerHorizontal="true"
+            android:background="@color/white"
+            android:padding="25dp"
+            />-->
 
         <ImageButton
             android:id="@+id/imgbtnTimerStop"
@@ -123,13 +136,13 @@
             />
 
 
-        <ImageButton
+  <!--      <ImageButton
             android:id="@+id/imgbtnTimerNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/imgbtnTimerPlay"
             android:background="@color/white"
-            android:src="@drawable/next" />
+            android:src="@drawable/next" />-->
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
