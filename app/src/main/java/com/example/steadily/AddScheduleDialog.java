@@ -110,6 +110,7 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
         // 선택된 날짜 저장
         clickedDate = clickedDate;
 
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference().child("users");
 
@@ -125,6 +126,7 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
         });
 
         //저장버튼 클릭 리스너
+        String finalClickedDate = clickedDate;
         imgBtnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,7 +142,7 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
                 for(int i=0; i<5; i++){
                     String ii = i+"";
 
-                    myRef.child(uid).child("date").child("20211121").child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
+                    myRef.child(uid).child("date").child(finalClickedDate).child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             String get_title = snapshot.child("title").getValue(String.class);
