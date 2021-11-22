@@ -147,7 +147,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-    <ImageButton
+<!--    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -165,7 +165,7 @@
         android:textSize="15dp"
         android:text="06:10 pm"
         android:layout_alignParentBottom="true"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"/>-->
 
 
 </RelativeLayout>
