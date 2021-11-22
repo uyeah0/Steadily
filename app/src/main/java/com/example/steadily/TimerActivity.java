@@ -41,13 +41,14 @@ public class TimerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
-        ImageButton back = findViewById(R.id.imgbtnTimerBack);
-        ImageButton cancel = findViewById(R.id.imgbtnTimerCancel);
+       // ImageButton back = findViewById(R.id.imgbtnTimerBack);
+        //ImageButton cancel = findViewById(R.id.imgbtnTimerCancel);
         TextView title = findViewById(R.id.txtTimerList);
         TextView minuteTV = findViewById(R.id.txtTimerMinute);
         TextView secondTV = findViewById(R.id.txtTimerSecond);
         ImageButton startBtn = findViewById(R.id.imgbtnTimerPlay);
-        ImageButton stopBtn = findViewById(R.id.imgbtnTimerStop);
+        ImageButton stopBtnGone = findViewById(R.id.imgbtnTimerStop);
+        //ImageButton stopBtn = findViewById(R.id.imgbtnTimerStopBtn);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference().child("users");
@@ -55,7 +56,7 @@ public class TimerActivity extends AppCompatActivity {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         String uid = user.getUid();
 
-        back.setOnClickListener(new View.OnClickListener() {
+      /*  back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -67,7 +68,7 @@ public class TimerActivity extends AppCompatActivity {
             public void onClick(View view) {
 
             }
-        });
+        });*/
 
         Intent intent = getIntent();
 
@@ -88,7 +89,7 @@ public class TimerActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String get_title = snapshot.child("title").getValue(String.class);
-
+                    Log.d("minuteTV", "a");
                     //Log.d("add", ii + get_title + title + time);
                     if(get_title!= null && get_title.equals(title)){
                         String get_time = snapshot.child("time").getValue(String.class);
@@ -102,9 +103,9 @@ public class TimerActivity extends AppCompatActivity {
                 }
             });
         }
-
+        Log.d("minuteTV", "c");
         // 리스트 분 타이머로 가져오기
-        //minuteTV.setText(intent.getStringExtra("minute"));
+        minuteTV.setText(intent.getStringExtra("minute"));
         // 리스트 초 타이머로 가져오기
         /*second.setText(intent.getStringExtra("second"));*/
         // 임의의 데이터
@@ -157,7 +158,7 @@ public class TimerActivity extends AppCompatActivity {
                                 if (iMinute == 0 && iSecond == 0) {
                                     timer.cancel();//타이머 종료
                                     startBtn.setVisibility(View.GONE);
-                                    stopBtn.setVisibility(View.VISIBLE);
+                                    stopBtnGone.setVisibility(View.VISIBLE);
                                 }
                             }
                         });
@@ -169,6 +170,7 @@ public class TimerActivity extends AppCompatActivity {
                 timer.schedule(timerTask, 0, 1000);
             }
         });
+
 
 
     }
