@@ -52,16 +52,12 @@ public class TodayListFragment extends Fragment {
 
     /*오늘 실천 추가 버튼*/
     ImageButton addScheduleButton;
-    ListView mScheduleListView;
+    static ListView mScheduleListView;
 
     /*오늘 실천 리스트*/
 
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference().child("users");
 
-    FirebaseUser user = firebaseAuth.getCurrentUser();
-    String uid = user.getUid();
 
     @Nullable
     @Override
@@ -70,7 +66,7 @@ public class TodayListFragment extends Fragment {
         mActivity = getActivity();
 
         View view = inflater.inflate(R.layout.fragment_todaylist, container, false);
-
+        mScheduleListView = view.findViewById(R.id.todaylistView);
 
         //주간캘린더 - 각 요일별 날짜 카드뷰
         CardView[] wCalender = new CardView[7];
@@ -108,41 +104,39 @@ public class TodayListFragment extends Fragment {
         //각 날짜를 클릭했을 때 날짜와 일치하는 데이터 불러오기
         wCalender[0].setOnClickListener(v -> { //일요일
             Log.d("myapp","일요일 눌림");
-            saveDate(ymTextView,wDate,0,listView);
+            weekCalendar.createDataList(ymTextView,wDate,0,listView);
             WeekCalendar.setCardColor(0,wCalender);
         });
         wCalender[1].setOnClickListener(v -> {
             Log.d("myapp","월요일 눌림");
-            saveDate(ymTextView,wDate,1,listView);
+            weekCalendar.createDataList(ymTextView,wDate,1,listView);
             WeekCalendar.setCardColor(1,wCalender);
         });
         wCalender[2].setOnClickListener(v -> {
             Log.d("myapp","화요일 눌림");
-            saveDate(ymTextView,wDate,2,listView);
+            weekCalendar.createDataList(ymTextView,wDate,2,listView);
             WeekCalendar.setCardColor(2,wCalender);
         });
         wCalender[3].setOnClickListener(v -> {
             Log.d("myapp","수요일 눌림");
-            saveDate(ymTextView,wDate,3,listView);
+            weekCalendar.createDataList(ymTextView,wDate,3,listView);
             WeekCalendar.setCardColor(3,wCalender);
         });
         wCalender[4].setOnClickListener(v -> {
             Log.d("myapp","목요일 눌림");
-            saveDate(ymTextView,wDate,4,listView);
+            weekCalendar.createDataList(ymTextView,wDate,4,listView);
             WeekCalendar.setCardColor(4,wCalender);
         });
         wCalender[5].setOnClickListener(v -> {
             Log.d("myapp","금요일 눌림");
-            saveDate(ymTextView,wDate,5,listView);
+            weekCalendar.createDataList(ymTextView,wDate,5,listView);
             WeekCalendar.setCardColor(5,wCalender);
         });
         wCalender[6].setOnClickListener(v -> {
             Log.d("myapp","토요일 눌림");
-            saveDate(ymTextView,wDate,6,listView);
+            weekCalendar.createDataList(ymTextView,wDate,6,listView);
             WeekCalendar.setCardColor(6,wCalender);
         });
-
-        clickedDate = ymTextView.getText().toString().substring(0,4)+""+ymTextView.getText().toString().substring(6,8)+""+todayDate.getDate();
 
         /*스케줄 추가 이벤트*/
         addScheduleButton = view.findViewById(R.id.imgBtnAddSchedule);
@@ -156,64 +150,13 @@ public class TodayListFragment extends Fragment {
         });
 
 
-
-
-        /*임의의 데이터 생성*/
-        /*파이어베이스로 데이터 연결*/
-
-        List<TodayScheduleItem> scheduleItems = new ArrayList<TodayScheduleItem>();
-        mScheduleListView = view.findViewById(R.id.todaylistView);
-        TodayScheduleListAdapter adapter = new TodayScheduleListAdapter(scheduleItems);
-        mScheduleListView.setAdapter(adapter);
-
-
-        for(int i=0; i<5; i++){
-            String ii = i+"";
-            int it = i;
-
-            TodayScheduleItem[] item1 = new TodayScheduleItem[5];
-
-            myRef.child(uid).child("date").child(clickedDate).child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    get_title = snapshot.child("title").getValue(String.class);
-                    get_time = snapshot.child("time").getValue(String.class);
-                    get_done = snapshot.child("done").getValue(String.class);
-
-                    Log.d("get", get_title+get_time+get_done);
-                    if(get_title != null && !get_title.equals("e")) {
-                        item1[it] = new TodayScheduleItem();
-
-                        item1[it].isChecked = get_done;
-                        item1[it].title = get_title;
-                        item1[it].time = get_time;
-
-                        scheduleItems.add(item1[it]);
-
-                        mScheduleListView.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-            adapter.notifyDataSetChanged();
-
-        }
-
-        /*어댑터로 연결*/
-
-
         return view;
     }
     static class WeekCalendar{
         //  날짜 변경 메서드
         static void createDataListToday(TextView ymTextView, TextView[] wDate, ListView listView){
             Calendar calendar = Calendar.getInstance(Locale.KOREA);
+            createDataList(ymTextView, wDate, calendar.get(Calendar.DAY_OF_WEEK)-1, listView);
         }
 
         static void setCardColor(int index, CardView[] wCalender){
@@ -224,6 +167,64 @@ public class TodayListFragment extends Fragment {
             }
         }
 
+        static void createDataList(TextView ymTextView, TextView[] wDate, int index, ListView listView) {
+            //0000.00.00형식의 String 만들기
+            String clickedDate = ymTextView.getText().toString().substring(0,4)+""+ymTextView.getText().toString().substring(6,8)+""+wDate[index].getText().toString();
+
+            /*임의의 데이터 생성*/
+            /*파이어베이스로 데이터 연결*/
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference().child("users");
+
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            String uid = user.getUid();
+
+
+
+            List<TodayScheduleItem> scheduleItems = new ArrayList<TodayScheduleItem>();
+
+            TodayScheduleListAdapter adapter = new TodayScheduleListAdapter(scheduleItems);
+            mScheduleListView.setAdapter(adapter);
+
+            for(int i=0; i<5; i++){
+                String ii = i+"";
+                int it = i;
+
+                TodayScheduleItem[] item1 = new TodayScheduleItem[5];
+
+                myRef.child(uid).child("date").child(clickedDate).child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        get_title = snapshot.child("title").getValue(String.class);
+                        get_time = snapshot.child("time").getValue(String.class);
+                        get_done = snapshot.child("done").getValue(String.class);
+
+                        Log.d("get", get_title+get_time+get_done);
+                        if(get_title != null && !get_title.equals("e")) {
+                            item1[it] = new TodayScheduleItem();
+
+                            item1[it].isChecked = get_done;
+                            item1[it].title = get_title;
+                            item1[it].time = get_time;
+
+                            scheduleItems.add(item1[it]);
+
+                            //mScheduleListView.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+            }
+            adapter.notifyDataSetChanged();
+        }
 
 
         @SuppressLint("SetTextI18n")
@@ -259,18 +260,9 @@ public class TodayListFragment extends Fragment {
                 //밑에 로그부분대로 파이어베이스에 넣으면 됩니다~ 특수문자없음
                 Log.d("myapp","캘린더 : "+cal.get(Calendar.YEAR)+monthValue+dayValue);
 
-                d = cal.get(Calendar.YEAR)+monthValue+dayValue;
             }
 
 
         }
-    }
-
-    // 클릭된 날짜 저장
-    public void saveDate(TextView ymTextView, TextView[] wDate, int index, ListView listView) {
-        //0000.00.00형식의 String 만들기
-        clickedDate = ymTextView.getText().toString().substring(0,4)+""+ymTextView.getText().toString().substring(6,8)+""+wDate[index].getText().toString();
-
-        //날짜 저장
     }
 }
