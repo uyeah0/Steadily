@@ -32,20 +32,21 @@ import java.util.TimerTask;
 public class TimerActivity extends AppCompatActivity {
     int iMinute=0, iSecond=0;
 
-    String fm = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final Context mContext = getApplicationContext();
-        FirebaseAuth firebaseAuth =  FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
-       // ImageButton back = findViewById(R.id.imgbtnTimerBack);
+        // ImageButton back = findViewById(R.id.imgbtnTimerBack);
         //ImageButton cancel = findViewById(R.id.imgbtnTimerCancel);
         TextView title = findViewById(R.id.txtTimerList);
         TextView minuteTV = findViewById(R.id.txtTimerMinute);
         TextView secondTV = findViewById(R.id.txtTimerSecond);
+        TextView showtime = findViewById(R.id.txtCurrentTime);
         ImageButton startBtn = findViewById(R.id.imgbtnTimerPlay);
         ImageButton stopBtnGone = findViewById(R.id.imgbtnTimerStop);
         //ImageButton stopBtn = findViewById(R.id.imgbtnTimerStopBtn);
@@ -82,18 +83,20 @@ public class TimerActivity extends AppCompatActivity {
         Date date = new Date();
         String time = simpleDateFormat.format(date);
 
-        for(int i=0; i<5; i++){
-            String ii = i+"";
+        String[] fm = new String[1];
+        for (int i = 0; i < 5; i++) {
+            String ii = i + "";
 
             myRef.child(uid).child("date").child(time).child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     String get_title = snapshot.child("title").getValue(String.class);
+                    String get_time = snapshot.child("time").getValue(String.class);
+
                     Log.d("minuteTV", "a");
                     //Log.d("add", ii + get_title + title + time);
-                    if(get_title!= null && get_title.equals(title)){
-                        String get_time = snapshot.child("time").getValue(String.class);
-                        minuteTV.setText(get_time);
+                    if (get_title != null && get_title.equals(title)) {
+                        fm[0] = get_time;
                     }
                 }
 
@@ -104,13 +107,14 @@ public class TimerActivity extends AppCompatActivity {
             });
         }
         Log.d("minuteTV", "c");
+
+        showtime.setText("주어진 시간만큼 일정을 실천해주세요!");
         // 리스트 분 타이머로 가져오기
         minuteTV.setText(intent.getStringExtra("minute"));
         // 리스트 초 타이머로 가져오기
         /*second.setText(intent.getStringExtra("second"));*/
         // 임의의 데이터
         secondTV.setText("0");
-
 
 
         startBtn.setOnClickListener(new View.OnClickListener() {
@@ -159,6 +163,25 @@ public class TimerActivity extends AppCompatActivity {
                                     timer.cancel();//타이머 종료
                                     startBtn.setVisibility(View.GONE);
                                     stopBtnGone.setVisibility(View.VISIBLE);
+
+                                    for (int i = 0; i < 5; i++) {
+                                        String ii = i + "";
+
+                                        myRef.child(uid).child("date").child(time).child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                String get_title = snapshot.child("title").getValue(String.class);
+                                                if(get_title.equals(title)){
+                                                    myRef.child(uid).child("date").child(time).child("schedule").child(ii).child("done").setValue("ok");
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+                                    }
                                 }
                             }
                         });
@@ -170,7 +193,6 @@ public class TimerActivity extends AppCompatActivity {
                 timer.schedule(timerTask, 0, 1000);
             }
         });
-
 
 
     }
