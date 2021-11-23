@@ -57,8 +57,6 @@ public class TodayListFragment extends Fragment {
     /*오늘 실천 리스트*/
 
 
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -203,8 +201,6 @@ public class TodayListFragment extends Fragment {
                 String ii = i+"";
                 int it = i;
 
-                TodayScheduleItem[] item1 = new TodayScheduleItem[5];
-
                 myRef.child(uid).child("date").child(clickedDate).child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -215,13 +211,15 @@ public class TodayListFragment extends Fragment {
                         Log.d("get_Today", get_title+get_time+get_done);
                         if(get_title != null && !get_title.equals("e")) {
                             Log.d("get_if", get_done+get_time+get_title);
-                            item1[it] = new TodayScheduleItem();
+                            TodayScheduleItem item = new TodayScheduleItem();
 
-                            item1[it].isChecked = get_done;
-                            item1[it].title = get_title;
-                            item1[it].time = get_time;
+                            item.date = clickedDate;
+                            item.isChecked = get_done;
+                            item.title = get_title;
+                            item.time = get_time;
 
-                            scheduleItems.add(item1[it]);
+
+                            scheduleItems.add(item);
 
                             //mScheduleListView.setAdapter(adapter);
                             

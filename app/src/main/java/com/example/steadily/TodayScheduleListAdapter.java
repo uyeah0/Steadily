@@ -86,10 +86,7 @@ public class TodayScheduleListAdapter extends BaseAdapter {
         todaySchedule_RealativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, TimerActivity.class);
-                intent.putExtra("title", item.title);
-                intent.putExtra("minute",item.time);
-                context.startActivity(intent);
+                startTimerActivity(context, item);
             }
         });
 
@@ -97,20 +94,14 @@ public class TodayScheduleListAdapter extends BaseAdapter {
         isDoneSchedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, TimerActivity.class);
-                intent.putExtra("title", item.title);
-                intent.putExtra("minute",item.time);
-                context.startActivity(intent);
+                startTimerActivity(context, item);
             }
         });
 
         todaySchedule_LinearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, TimerActivity.class);
-                intent.putExtra("title", item.title);
-                intent.putExtra("minute",item.time);
-                context.startActivity(intent);
+                startTimerActivity(context, item);
             }
         });
 
@@ -118,10 +109,7 @@ public class TodayScheduleListAdapter extends BaseAdapter {
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, TimerActivity.class);
-                intent.putExtra("title", item.title);
-                intent.putExtra("minute",item.time);
-                context.startActivity(intent);
+                startTimerActivity(context, item);
             }
         });
 
@@ -144,4 +132,14 @@ public class TodayScheduleListAdapter extends BaseAdapter {
 
         return convertView;
     }
+
+    private void startTimerActivity(Context context, TodayScheduleItem item) {
+        Intent intent = new Intent(context, TimerActivity.class);
+        intent.putExtra("title", item.title);
+        intent.putExtra("minute",item.time);
+        intent.putExtra("date", item.date);
+
+        context.startActivity(intent);
+    }
+
 }

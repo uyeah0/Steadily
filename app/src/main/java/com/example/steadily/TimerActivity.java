@@ -30,98 +30,69 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class TimerActivity extends AppCompatActivity {
-    int iMinute=0, iSecond=0;
+
+    private TextView mTitleTextView;
+    private TextView mMinuteTextView;
+    private TextView mSecondTextView;
+    private ImageButton mStartImageButton;
+    private ImageButton mStopImageButton;
+    private int iMinute = 0;
+    private int iSecond = 0;
+
+    private Timer mTimer;
+    private boolean mStared = false; //측정 시작 여부
+
+    DatabaseReference mMyRef = FirebaseDatabase.getInstance().getReference().child("users");
+    private String mUid;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        final Context mContext = getApplicationContext();
+        final Activity mActivity = this;
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
-        // ImageButton back = findViewById(R.id.imgbtnTimerBack);
-        //ImageButton cancel = findViewById(R.id.imgbtnTimerCancel);
-        TextView title = findViewById(R.id.txtTimerList);
-        TextView minuteTV = findViewById(R.id.txtTimerMinute);
-        TextView secondTV = findViewById(R.id.txtTimerSecond);
-        //TextView showtime = findViewById(R.id.txtCurrentTime);
-        ImageButton startBtn = findViewById(R.id.imgbtnTimerPlay);
-        //ImageButton stopBtnGone = findViewById(R.id.imgbtnTimerStop);
-        ImageButton stopBtn = findViewById(R.id.imgbtnTimerStopBtn);
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference().child("users");
+        mTitleTextView = findViewById(R.id.txtTimerList);
+        mMinuteTextView = findViewById(R.id.txtTimerMinute);
+        mSecondTextView = findViewById(R.id.txtTimerSecond);
+        mStartImageButton = findViewById(R.id.imgbtnTimerPlay);
+        mStopImageButton = findViewById(R.id.imgbtnTimerStopBtn);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        String uid = user.getUid();
-
-      /*  back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });*/
+        mUid = user.getUid();
 
         Intent intent = getIntent();
 
         // 리스트 제목 타이머로 가져오기
-        title.setText(intent.getStringExtra("title"));
-
-
-        //날짜 및 시간 형식 지정
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
-        //Date 객체 사용
-        Date date = new Date();
-        String time = simpleDateFormat.format(date);
-
-        String[] fm = new String[1];
-        for (int i = 0; i < 5; i++) {
-            String ii = i + "";
-
-            myRef.child(uid).child("date").child(time).child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    String get_title = snapshot.child("title").getValue(String.class);
-                    String get_time = snapshot.child("time").getValue(String.class);
-
-                    Log.d("minuteTV", "a");
-                    //Log.d("add", ii + get_title + title + time);
-                    if (get_title != null && get_title.equals(title)) {
-                        fm[0] = get_time;
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
-        Log.d("minuteTV", "c");
+        mTitleTextView.setText(intent.getStringExtra("title"));
+        String selectedDate = intent.getStringExtra("date");
 
         //showtime.setText("주어진 시간만큼 일정을 실천해주세요!");
         // 리스트 분 타이머로 가져오기
-        minuteTV.setText(intent.getStringExtra("minute"));
+        mMinuteTextView.setText(intent.getStringExtra("minute"));
         // 리스트 초 타이머로 가져오기
-        /*second.setText(intent.getStringExtra("second"));*/
+        /*mScond.setText(intent.getStringExtra("second"));*/
         // 임의의 데이터
-        secondTV.setText("0");
+        mSecondTextView.setText("0");
 
 
-        startBtn.setOnClickListener(new View.OnClickListener() {
+        mStartImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (mStared)  {
+                    return;
+                }
 
-                iMinute = Integer.parseInt(minuteTV.getText().toString());
-                iSecond = Integer.parseInt(secondTV.getText().toString());
+                iMinute = Integer.parseInt(mMinuteTextView.getText().toString());
+                iSecond = Integer.parseInt(mSecondTextView.getText().toString());
 
-                Timer timer = new Timer();
+                if (mTimer == null) {
+                    mTimer = new Timer();
+                }
+
+
                 TimerTask timerTask = new TimerTask() {
                     @Override
                     public void run() {
@@ -144,39 +115,22 @@ public class TimerActivity extends AppCompatActivity {
                                 // 분, 초가 10이하(한자리수) 라면
                                 // 숫자 앞에 0을 붙인다 ( 8 -> 08 )
                                 if (iSecond <= 9) {
-                                    secondTV.setText("0" + iSecond);
+                                    mSecondTextView.setText("0" + iSecond);
                                 } else {
-                                    secondTV.setText(Integer.toString(iSecond));
+                                    mSecondTextView.setText(Integer.toString(iSecond));
                                 }
 
                                 if (iMinute <= 9) {
-                                    minuteTV.setText("0" + iMinute);
+                                    mMinuteTextView.setText("0" + iMinute);
                                 } else {
-                                    minuteTV.setText(Integer.toString(iMinute));
+                                    mMinuteTextView.setText(Integer.toString(iMinute));
                                 }
 
                                 // 타이머를 종료한다..
                                 if (iMinute == 0 && iSecond == 0) {
-                                    timer.cancel();//타이머 종료
+                                    mTimer.cancel();//타이머 종료
 
-                                    for (int i = 0; i < 5; i++) {
-                                        String ii = i + "";
-
-                                        myRef.child(uid).child("date").child(time).child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                String get_title = snapshot.child("title").getValue(String.class);
-                                                if(get_title.equals(title)){
-                                                    myRef.child(uid).child("date").child(time).child("schedule").child(ii).child("done").setValue("ok");
-                                                }
-                                            }
-
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError error) {
-
-                                            }
-                                        });
-                                    }
+                                    saveData(selectedDate);
                                 }
                             }
                         });
@@ -185,10 +139,40 @@ public class TimerActivity extends AppCompatActivity {
 
                 };
 
-                timer.schedule(timerTask, 0, 1000);
+                mTimer.schedule(timerTask, 0, 1000);
+
+                mStared = true;
             }
         });
 
+        mStopImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTimer.cancel();
+                saveData(selectedDate);
+                mActivity.finish();
+            }
+        });
+    }
 
+    private void saveData(String selectedDate) {
+        for (int i = 0; i < 5; i++) {
+            String ii = i + "";
+
+            mMyRef.child(mUid).child("date").child(selectedDate).child("schedule").child(ii).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String get_title = snapshot.child("title").getValue(String.class);
+                    if(get_title.equals(mTitleTextView.getText().toString())){
+                        mMyRef.child(mUid).child("date").child(selectedDate).child("schedule").child(ii).child("done").setValue("true");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
     }
 }
