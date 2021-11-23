@@ -31,7 +31,7 @@ public class CompletedListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragement_completedlist, container, false);
 
-       /* *//*월간캘린더커스텀*//*
+        //월간캘린더커스텀
         FlexibleCalendarView flexibleCalendarView = view.findViewById(R.id.calendar_view);
         flexibleCalendarView.setCalendarView(new FlexibleCalendarView.CalendarView() {
             @Override
@@ -71,7 +71,7 @@ public class CompletedListFragment extends Fragment {
             public String getDayOfWeekDisplayValue(int dayOfWeek, String defaultValue) {
                 return String.valueOf(defaultValue.charAt(0));
             }
-        });*/
+        });
 
         TextView selectedDate = view.findViewById(R.id.tv_selected_date);
         ListView completedList = view.findViewById(R.id.completedlist);
