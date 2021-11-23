@@ -131,6 +131,7 @@ public class TimerActivity extends AppCompatActivity {
                                     mTimer.cancel();//타이머 종료
 
                                     saveData(selectedDate);
+                                    mActivity.finish();
                                 }
                             }
                         });

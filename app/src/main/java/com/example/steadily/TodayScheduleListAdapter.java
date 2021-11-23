@@ -134,6 +134,9 @@ public class TodayScheduleListAdapter extends BaseAdapter {
     }
 
     private void startTimerActivity(Context context, TodayScheduleItem item) {
+        if (item.isChecked.equals("true")) {
+            return;
+        }
         Intent intent = new Intent(context, TimerActivity.class);
         intent.putExtra("title", item.title);
         intent.putExtra("minute",item.time);

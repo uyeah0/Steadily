@@ -91,7 +91,7 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
         this.mContext = context;
     }
 
-    public void showDialog(String clickedDate) {
+    public void showDialog(String clickedDate, TodayListFragment.AddScheduleDialogClosedListener listener) {
         final Dialog dialog = new Dialog(mContext);
 
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -151,6 +151,7 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
                             if(get_title!= null && get_title.equals("e") && cnt != 1){
                                 myRef.child(uid).child("date").child(finalClickedDate).child("schedule").child(ii).child("title").setValue(title);
                                 myRef.child(uid).child("date").child(finalClickedDate).child("schedule").child(ii).child("time").setValue(time);
+                                myRef.child(uid).child("date").child(finalClickedDate).child("schedule").child(ii).child("done").setValue("e");
                                 cnt = 1;
                             }
                         }
@@ -163,6 +164,7 @@ public class AddScheduleDialog extends AppCompatActivity implements TimePicker.O
                 }
 
                 dialog.hide();
+                listener.onClose();
             }
         });
     }
