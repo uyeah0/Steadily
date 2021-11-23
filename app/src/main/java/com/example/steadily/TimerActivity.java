@@ -46,7 +46,7 @@ public class TimerActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.txtTimerList);
         TextView minuteTV = findViewById(R.id.txtTimerMinute);
         TextView secondTV = findViewById(R.id.txtTimerSecond);
-        TextView showtime = findViewById(R.id.txtCurrentTime);
+        //TextView showtime = findViewById(R.id.txtCurrentTime);
         ImageButton startBtn = findViewById(R.id.imgbtnTimerPlay);
         ImageButton stopBtnGone = findViewById(R.id.imgbtnTimerStop);
         //ImageButton stopBtn = findViewById(R.id.imgbtnTimerStopBtn);
@@ -108,7 +108,7 @@ public class TimerActivity extends AppCompatActivity {
         }
         Log.d("minuteTV", "c");
 
-        showtime.setText("주어진 시간만큼 일정을 실천해주세요!");
+        //showtime.setText("주어진 시간만큼 일정을 실천해주세요!");
         // 리스트 분 타이머로 가져오기
         minuteTV.setText(intent.getStringExtra("minute"));
         // 리스트 초 타이머로 가져오기
