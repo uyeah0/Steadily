@@ -110,7 +110,7 @@
             android:padding="25dp"
             />
 
-       <!-- <ImageButton
+        <ImageButton
             android:id="@+id/imgbtnTimerStopBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,20 +120,9 @@
             android:layout_centerHorizontal="true"
             android:background="@color/white"
             android:padding="25dp"
-            />-->
-
-        <ImageButton
-            android:id="@+id/imgbtnTimerStop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:src="@drawable/stop"
-            android:layout_below="@+id/txtTimertime"
-            android:layout_centerHorizontal="true"
-            android:background="@color/white"
-            android:padding="25dp"
-            android:visibility="gone"
             />
+
+
 
 
   <!--      <ImageButton

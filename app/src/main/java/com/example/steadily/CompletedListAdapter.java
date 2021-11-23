@@ -47,7 +47,8 @@ public class CompletedListAdapter extends BaseAdapter {
         ImageButton modifyButton = convertView.findViewById(R.id.imgBtn_completedList_modify);
 
         /*루틴에 타이틀 넣기*/
-        routineTitle.setText(mRoutines.get(position));
+        if (!mRoutines.isEmpty())
+            routineTitle.setText(mRoutines.get(position));
 
         return convertView;
     }

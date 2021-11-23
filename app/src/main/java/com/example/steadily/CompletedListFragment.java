@@ -2,6 +2,8 @@ package com.example.steadily;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +15,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.p_v.flexiblecalendar.FlexibleCalendarView;
+import com.p_v.flexiblecalendar.entity.SelectedDateItem;
 import com.p_v.flexiblecalendar.view.BaseCellView;
 
 import java.util.ArrayList;
@@ -21,7 +31,20 @@ import java.util.List;
 
 // 전체 목록
 public class CompletedListFragment extends Fragment {
-    Context mContext;
+    private Context mContext;
+    private FlexibleCalendarView mCalendarView;
+    private TextView mCurrentDate;
+    private ListView mCompletedList;
+    private Button mChangeRoutine;
+
+    FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
+    String mMyUId = mFirebaseAuth.getUid();
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference().child("users");
+
+    List<String> mRoutines = new ArrayList<>();
+    CompletedListAdapter mCompletedListAdapter;
+    String mSelectedDate;
+
 
     @Nullable
     @Override
@@ -31,7 +54,7 @@ public class CompletedListFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragement_completedlist, container, false);
 
-        //월간캘린더커스텀
+         //월간캘린더커스텀
         FlexibleCalendarView flexibleCalendarView = view.findViewById(R.id.calendar_view);
         flexibleCalendarView.setCalendarView(new FlexibleCalendarView.CalendarView() {
             @Override
@@ -73,23 +96,63 @@ public class CompletedListFragment extends Fragment {
             }
         });
 
-        TextView selectedDate = view.findViewById(R.id.tv_selected_date);
-        ListView completedList = view.findViewById(R.id.completedlist);
-        Button changeRoutine = view.findViewById(R.id.btn_change);
+        mCalendarView = view.findViewById(R.id.calendar_view);
+        mCurrentDate = view.findViewById(R.id.tv_selected_date);
+        mCompletedList = view.findViewById(R.id.completedlist);
+        mChangeRoutine = view.findViewById(R.id.btn_change);
 
-        //ui 확인을 위한 DUMMY DATA
-        List<String> routines = new ArrayList<String>();
-        routines.add("주말 루틴 1");
-        routines.add("주말 루틴 2");
-        routines.add("주말 루틴 3");
-        routines.add("주말 루틴 4");
-        routines.add("주말 루틴 5");
+        SelectedDateItem selectedDateItem = mCalendarView.getSelectedDateItem();
+        String displaySelectedDate = String.format("%d.%d", selectedDateItem.getMonth() + 1, selectedDateItem.getDay());
+        mCurrentDate.setText(displaySelectedDate);
 
+        mCompletedListAdapter = new CompletedListAdapter(mRoutines);
+        mCompletedList.setAdapter(mCompletedListAdapter);
 
-        CompletedListAdapter completedListAdapter = new CompletedListAdapter(routines);
+        mSelectedDate = String.format("%d%d%d",  selectedDateItem.getYear(), selectedDateItem.getMonth() + 1, selectedDateItem.getDay());
 
-        completedList.setAdapter(completedListAdapter);
+        mCalendarView.setOnDateClickListener(new FlexibleCalendarView.OnDateClickListener() {
+            @Override
+            public void onDateClick(int year, int month, int day) {
+                mRoutines.clear();
+                mCompletedListAdapter.notifyDataSetChanged();
+                String displaySelectedDate = String.format("%d.%d", month + 1, day);
+                mCurrentDate.setText(displaySelectedDate);
+                mSelectedDate = String.format("%d%d%d", year, month + 1, day);
+
+                getRoutines();
+            }
+        });
+
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        getRoutines();
+
+    }
+
+
+    private void getRoutines() {
+        for(int i=0; i<5; i++) {
+            mRootRef.child(mMyUId).child("date").child(mSelectedDate).child("schedule").child(Integer.toString(i)).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String title = snapshot.child("title").getValue(String.class);
+                    if (!TextUtils.isEmpty(title) && !title.equals("e")) {
+                        mRoutines.add(title);
+                        mCompletedListAdapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
     }
 }

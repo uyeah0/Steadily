@@ -48,8 +48,8 @@ public class TimerActivity extends AppCompatActivity {
         TextView secondTV = findViewById(R.id.txtTimerSecond);
         //TextView showtime = findViewById(R.id.txtCurrentTime);
         ImageButton startBtn = findViewById(R.id.imgbtnTimerPlay);
-        ImageButton stopBtnGone = findViewById(R.id.imgbtnTimerStop);
-        //ImageButton stopBtn = findViewById(R.id.imgbtnTimerStopBtn);
+        //ImageButton stopBtnGone = findViewById(R.id.imgbtnTimerStop);
+        ImageButton stopBtn = findViewById(R.id.imgbtnTimerStopBtn);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference().child("users");
@@ -60,14 +60,11 @@ public class TimerActivity extends AppCompatActivity {
       /*  back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
             }
         });
-
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
             }
         });*/
 
@@ -161,8 +158,6 @@ public class TimerActivity extends AppCompatActivity {
                                 // 타이머를 종료한다..
                                 if (iMinute == 0 && iSecond == 0) {
                                     timer.cancel();//타이머 종료
-                                    startBtn.setVisibility(View.GONE);
-                                    stopBtnGone.setVisibility(View.VISIBLE);
 
                                     for (int i = 0; i < 5; i++) {
                                         String ii = i + "";

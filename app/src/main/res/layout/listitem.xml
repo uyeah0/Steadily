@@ -85,15 +85,6 @@
                     android:textStyle="bold"
                     android:text=" 분"/>
 
-<!--
-                <ImageButton
-                    android:id="@+id/todaySchedule_modify_btn"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="15dp"
-                    android:src="@drawable/edit" />
--->
 
             </RelativeLayout>
 
