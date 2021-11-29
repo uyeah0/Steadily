@@ -48,8 +48,7 @@ public class CompletedListFragment extends Fragment {
     List<String> mRoutines = new ArrayList<>();
     CompletedListAdapter mCompletedListAdapter;
     String mSelectedDate;
-
-
+    
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -167,7 +166,7 @@ public class CompletedListFragment extends Fragment {
 
     }
 
-
+    // 전체 목록에 날짜별 루틴 가져오기
     private void getRoutines() {
         for(int i=0; i<5; i++) {
             mRootRef.child(mMyUId).child("date").child(mSelectedDate).child("schedule").child(Integer.toString(i)).addValueEventListener(new ValueEventListener() {
